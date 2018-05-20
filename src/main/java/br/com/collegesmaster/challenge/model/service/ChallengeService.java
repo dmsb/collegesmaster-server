@@ -1,0 +1,20 @@
+package br.com.collegesmaster.challenge.model.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import br.com.collegesmaster.challenge.model.entity.Challenge;
+import br.com.collegesmaster.challenge.model.entity.Question;
+import br.com.collegesmaster.generics.GenericCRUD;
+import br.com.collegesmaster.security.model.entity.User;
+
+@Repository
+public interface ChallengeService extends GenericCRUD<Challenge> {
+	
+	Challenge findById(final Integer id);
+	
+	List<Question> findQuestionsByChallenge(Challenge selectedChallenge);
+	
+	List<Challenge> findByUser(User user);
+}
