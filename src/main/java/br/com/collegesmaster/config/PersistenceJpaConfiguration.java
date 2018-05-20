@@ -6,12 +6,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -26,6 +31,23 @@ public class PersistenceJpaConfiguration {
 
 	@Autowired
 	private Environment env;
+	
+	@Value("classpath:/sql/spring_oauth.sql")
+	private Resource oauthSchemaScript;
+	
+	private DatabasePopulator databasePopulator() {
+	    ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+	    populator.addScript(oauthSchemaScript);
+	    return populator;
+	}
+	
+	@Bean
+	public DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
+	    DataSourceInitializer initializer = new DataSourceInitializer();
+	    initializer.setDataSource(dataSource);
+	    initializer.setDatabasePopulator(databasePopulator());
+	    return initializer;
+	}
 	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
