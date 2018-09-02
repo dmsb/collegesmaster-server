@@ -30,5 +30,4 @@ public class UiWebConfig implements WebMvcConfigurer {
 			.addResourceHandler("/resources/**")
 			.addResourceLocations("/resources/");
 	}
-
 }

@@ -22,15 +22,22 @@ public class PasswordEncoderWithSalt {
 		final MessageDigest digester = getDigestInstanceSHA512();
 		final String hashedPassword = buildHashedPassword(digester, password, salt);
 		digester.reset();
-		final byte[] hashedPasswordBytes = digester.digest(hashedPassword.getBytes());
-		final String hashedPasswordWithSalt = convertToBase64(hashedPasswordBytes);
-		return hashedPasswordWithSalt;
+		if(hashedPassword != null) {
+			final byte[] hashedPasswordBytes = digester.digest(hashedPassword.getBytes());
+			final String hashedPasswordWithSalt = convertToBase64(hashedPasswordBytes);
+			return hashedPasswordWithSalt;			
+		}
+		 return null;
 	}
 
 	private String buildHashedPassword(final MessageDigest digester, final String password, final String salt) {
-		String hashedPassword = convertToBase64(digester.digest(password.getBytes()));
-		hashedPassword = hashedPassword.concat(salt);
-		return hashedPassword;
+		if(password != null) {
+			String hashedPassword = convertToBase64(digester.digest(password.getBytes()));
+			hashedPassword = hashedPassword.concat(salt);
+			return hashedPassword;	
+		}
+		
+		return null;
 	}
 
 	private String convertToBase64(final byte[] passwordBytes) {

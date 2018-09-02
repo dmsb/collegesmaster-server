@@ -8,22 +8,36 @@
 	<packaging>war</packaging>
 	<name>Colleges Master</name>
 
+	<parent>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+	    <version>2.0.4.RELEASE</version>
+	    <relativePath />
+	</parent>
+
 	<properties>
-		<spring.version>2.0.2.RELEASE</spring.version>
 		<spring.oauth2.version>2.3.3.RELEASE</spring.oauth2.version>
-		<tomcat.version>8.0.3</tomcat.version>
+<!-- 		<tomcat.version>8.0.3</tomcat.version> -->
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-jpa</artifactId>
-		    <version>2.0.7.RELEASE</version>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-test</artifactId>
+		    <scope>test</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.security.oauth</groupId>
@@ -31,30 +45,37 @@
 		    <version>2.3.3.RELEASE</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		</dependency>
+		
 
 		<!-- QueryDsl Generator-->
 		<dependency>
 		    <groupId>com.querydsl</groupId>
 		    <artifactId>querydsl-apt</artifactId>
-		    <version>4.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
-			<version>4.2.1</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-envers</artifactId>
-			<version>5.3.0.Final</version>
+			<exclusions>
+		        <exclusion>
+		          <groupId>org.hibernate</groupId>
+		          <artifactId>hibernate-core</artifactId>
+		        </exclusion>
+		    </exclusions> 
 		</dependency>
 
 		<!-- Database -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.5</version>
 		</dependency>
 
 		<!-- Google Guava -->
@@ -113,8 +134,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<artifactId>maven-compiler-plugin</artifactId>				
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -123,7 +143,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>

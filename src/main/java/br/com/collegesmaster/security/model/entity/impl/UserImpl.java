@@ -114,16 +114,18 @@ public class UserImpl extends ModelImpl implements User {
 	public void encriptyPassword() {
     	final PasswordEncoderWithSalt encoder = new PasswordEncoderWithSalt();
     	final String salt = encoder.generateSalt();	
-		setSalt(salt);
-		setPassword(encoder.generateHashedPassword(getPassword(), salt));
-		parseCpfToCrude();
+		this.setSalt(salt);
+		this.setPassword(encoder.generateHashedPassword(getPassword(), salt));
+		this.parseCpfToCrude();
     }
     
     @PreUpdate
     @Override
 	public void parseCpfToCrude() {
-		final String crudeCpf = getCpf().replaceAll("[^0-9]", "");
-		setCpf(crudeCpf);
+    	if(this.getCpf() != null) {
+    		final String crudeCpf = this.getCpf().replaceAll("[^0-9]", "");
+    		setCpf(crudeCpf);    		
+    	}
     }
 	
     @Override

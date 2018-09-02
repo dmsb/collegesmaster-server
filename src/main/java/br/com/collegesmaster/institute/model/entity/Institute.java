@@ -20,8 +20,4 @@ public interface Institute extends Localization, Model {
 
 	void setCourses(Collection<CourseImpl> courses);
 
-	void setSemester(String semester);
-
-	String getSemester();
-
 }

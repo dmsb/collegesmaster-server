@@ -41,10 +41,6 @@ public class InstituteImpl extends ModelImpl implements Institute {
     @OneToMany(targetEntity = CourseImpl.class, cascade = ALL, 
     		fetch = LAZY, orphanRemoval = true, mappedBy = "institute")
     private Collection<CourseImpl> courses;
-
-    @NotNull
-    @Column(name = "semester", nullable = false, length = 6)
-    private String semester;
     
     @Column(name = "country", nullable = false, length = 50)
 	private String country;
@@ -83,16 +79,6 @@ public class InstituteImpl extends ModelImpl implements Institute {
 	@Override
 	public void setCourses(Collection<CourseImpl> courses) {
 		this.courses = courses;
-	}
-
-    @Override
-	public String getSemester() {
-		return semester;
-	}
-
-	@Override
-	public void setSemester(String semester) {
-		this.semester = semester;
 	}
 
 	@Override

@@ -38,17 +38,18 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/", "/home").permitAll()	
+			.antMatchers("/", "/home").permitAll()
 			.antMatchers("/professor/**").hasAnyAuthority("PROFESSOR", "ADMINISTRATOR")
 			.antMatchers("/student/**").hasAnyAuthority("STUDENT", "ADMINISTRATOR");
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(authenticationProvider())
+		auth
+//		.authenticationProvider(authenticationProvider())
 		.inMemoryAuthentication()
 		.withUser("test")
-		.password("test")
+		.password("$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6")//secret
 		.roles("TEST");
 	}
 

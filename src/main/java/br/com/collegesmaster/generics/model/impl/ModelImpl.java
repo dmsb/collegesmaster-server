@@ -42,6 +42,7 @@ public class ModelImpl implements Model {
 	@PrePersist
 	protected void prePersist() {
 		setCreationDate(LocalDateTime.now());
+		setLastModificationDate(LocalDateTime.now());
 	}
 	
 	@PreUpdate

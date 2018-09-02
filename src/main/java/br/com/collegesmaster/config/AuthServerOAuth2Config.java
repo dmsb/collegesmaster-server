@@ -39,8 +39,9 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+		
 		clients.jdbc(dataSource)
-			.withClient("angular-client").secret("secret")
+			.withClient("angular-client").secret("$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6") //secret
 			.authorizedGrantTypes("password", "authorization_code", "refresh_token")
 			.accessTokenValiditySeconds(3600).scopes("read");
 	}
