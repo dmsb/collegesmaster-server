@@ -46,7 +46,7 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-//		.authenticationProvider(authenticationProvider())
+		.authenticationProvider(authenticationProvider())
 		.inMemoryAuthentication()
 		.withUser("test")
 		.password("$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6")//secret
