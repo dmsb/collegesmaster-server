@@ -62,7 +62,7 @@ public class PersistenceJpaConfiguration {
 		return em;
 	}
 
-	@Bean
+	@Bean(name="transactionManager")
 	public PlatformTransactionManager hibernateTransactionManager(EntityManagerFactory emf) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(emf);

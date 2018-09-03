@@ -25,13 +25,11 @@ public class IntegrationTest extends IntegrationTestUtils {
 	 
 		String accessToken = obtainAccessToken("test", "secret");
 		
-	    mvc.perform(get("/institutes/list").header("Authorization", "Bearer " + accessToken)
+	    mvc.perform(get("/institutes").header("Authorization", "Bearer " + accessToken)
 	      .contentType(MediaType.APPLICATION_JSON))
 	      .andExpect(status().isOk())
-	      .andExpect(content()
-	      .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-	      .andExpect(jsonPath("$[0].name", is("IFPE")));
+	      .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+	      .andExpect(jsonPath("$.length()", is(2)));
 	}
-	
 }
 

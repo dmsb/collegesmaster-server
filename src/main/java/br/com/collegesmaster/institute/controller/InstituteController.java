@@ -11,7 +11,7 @@ import br.com.collegesmaster.institute.model.entity.impl.InstituteImpl;
 import br.com.collegesmaster.institute.model.service.InstituteService;
 import br.com.collegesmaster.security.controller.UserController;
 
-@RestController("institutes/")
+@RestController
 public class InstituteController {
 	
 	private static final Logger logger = LogManager.getLogger(UserController.class);
@@ -19,7 +19,7 @@ public class InstituteController {
 	@Inject
 	private InstituteService instituteService;
 	
-	@GetMapping("list/")
+	@GetMapping("/institutes")
 	public Iterable<InstituteImpl> list() {
 		logger.info("listing institutes");
 		return instituteService.findAll();
