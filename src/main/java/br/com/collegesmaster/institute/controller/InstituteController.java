@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.collegesmaster.institute.model.entity.Institute;
 import br.com.collegesmaster.institute.model.entity.impl.InstituteImpl;
 import br.com.collegesmaster.institute.model.service.InstituteService;
 import br.com.collegesmaster.security.controller.UserController;
@@ -23,5 +24,10 @@ public class InstituteController {
 	public Iterable<InstituteImpl> list() {
 		logger.info("listing institutes");
 		return instituteService.findAll();
+	}
+	
+	@GetMapping("/institutes/create")
+	public Institute create(final InstituteImpl institute) {
+		return instituteService.create(institute);
 	}
 }
