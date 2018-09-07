@@ -2,6 +2,7 @@ package br.com.collegesmaster.integration;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -15,19 +16,18 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import br.com.collegesmaster.institute.model.entity.Institute;
 import br.com.collegesmaster.institute.model.entity.impl.InstituteImpl;
 
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class IntegrationTest extends IntegrationTestUtils {
+public class InstituteIntegrationTest extends IntegrationTestUtils {
 	
 	@Test
-	public void givenToken_whenGetInstitutes_thenStatus200()
+	public void test_001_givenToken_whenGetInstitutes_thenStatus200()
 	  throws Exception {
 	 
-		String accessToken = obtainAccessToken("test", "secret");
+		final String accessToken = obtainAccessToken("test", "secret");
 		
 	    mvc.perform(get("/institutes").header("Authorization", "Bearer " + accessToken)
 	      .contentType(MediaType.APPLICATION_JSON))
@@ -37,22 +37,22 @@ public class IntegrationTest extends IntegrationTestUtils {
 	}
 	
 	@Test
-	public void givenInstituteAndToken_whenCreateInstitute_thenReturnInstitute()
+	public void test_002_givenInstituteAndToken_whenCreateInstitute_thenReturnInstitute()
 	  throws Exception {
 	 
-		String accessToken = obtainAccessToken("test", "secret");
+		final String accessToken = obtainAccessToken("test", "secret");
 		
-		final Institute institute = new InstituteImpl();
+		final InstituteImpl institute = new InstituteImpl();
 		institute.setCity("RECIFE");
 		institute.setCountry("BRASIL");
 		institute.setName("IFPE");
 		institute.setState("PE");
 		
 		final ObjectMapper mapper = new ObjectMapper();
-		final String instituteToJson = mapper.writeValueAsString(institute);
+		final String instituteToJson = mapper.writerWithType(InstituteImpl.class).writeValueAsString(institute);
 		
 		
-	    mvc.perform(get("/institutes/create").header("Authorization", "Bearer " + accessToken)
+	    mvc.perform(post("/institutes/create").header("Authorization", "Bearer " + accessToken)
 	      .contentType(MediaType.APPLICATION_JSON).content(instituteToJson))
 	      .andExpect(status().isOk())
 	      .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

@@ -3,6 +3,8 @@ package br.com.collegesmaster.generics.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
@@ -18,6 +20,7 @@ public interface Model extends Serializable {
 	
 	void setVersion(Long version);
 	
+	@JsonIgnore
 	default Boolean isNew() {
 		return getId() == null && getVersion() == null;
 	}

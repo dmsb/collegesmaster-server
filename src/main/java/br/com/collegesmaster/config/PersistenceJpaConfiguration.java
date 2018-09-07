@@ -36,14 +36,14 @@ public class PersistenceJpaConfiguration {
 	private Resource oauthSchemaScript;
 	
 	private DatabasePopulator databasePopulator() {
-	    ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+	    final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
 	    populator.addScript(oauthSchemaScript);
 	    return populator;
 	}
 	
 	@Bean
 	public DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
-	    DataSourceInitializer initializer = new DataSourceInitializer();
+	    final DataSourceInitializer initializer = new DataSourceInitializer();
 	    initializer.setDataSource(dataSource);
 	    initializer.setDatabasePopulator(databasePopulator());
 	    return initializer;
@@ -51,11 +51,11 @@ public class PersistenceJpaConfiguration {
 	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+		final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(this.dataSource());
 		em.setPackagesToScan(new String[] { "br.com.collegesmaster.*.model" });
 
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
 		em.setJpaProperties(persistenceProperties());
 
@@ -64,7 +64,7 @@ public class PersistenceJpaConfiguration {
 
 	@Bean(name="transactionManager")
 	public PlatformTransactionManager hibernateTransactionManager(EntityManagerFactory emf) {
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		final JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(emf);
 		return transactionManager;
 	}
@@ -76,7 +76,7 @@ public class PersistenceJpaConfiguration {
 	
 	@Bean
 	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(env.getProperty("javax.persistence.jdbc.driver"));
 		dataSource.setUrl(env.getProperty("javax.persistence.jdbc.url"));
 		dataSource.setUsername(env.getProperty("javax.persistence.jdbc.user"));
@@ -85,11 +85,10 @@ public class PersistenceJpaConfiguration {
 	}
 
 	private final Properties persistenceProperties() {
-		Properties persistenceProperties = new Properties();
-		persistenceProperties.setProperty("hibernate.hbm2ddl.auto", "update");
-		persistenceProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-		persistenceProperties.setProperty("hibernate.show_sql", "true");
-
+		final Properties persistenceProperties = new Properties();
+		persistenceProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+		persistenceProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+		persistenceProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		return persistenceProperties;
 	}
 

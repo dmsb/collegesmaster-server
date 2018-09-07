@@ -1,10 +1,13 @@
 package br.com.collegesmaster.institute.controller;
 
-import javax.inject.Inject;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.collegesmaster.institute.model.entity.Institute;
@@ -17,7 +20,7 @@ public class InstituteController {
 	
 	private static final Logger logger = LogManager.getLogger(UserController.class);
 	
-	@Inject
+	@Autowired
 	private InstituteService instituteService;
 	
 	@GetMapping("/institutes")
@@ -26,8 +29,10 @@ public class InstituteController {
 		return instituteService.findAll();
 	}
 	
-	@GetMapping("/institutes/create")
-	public Institute create(final InstituteImpl institute) {
-		return instituteService.create(institute);
+	@PostMapping("/institutes/create")
+	public ResponseEntity<Institute> create(@RequestBody final InstituteImpl institute) {
+		final Institute insituteCreated = instituteService.create(institute);
+		final ResponseEntity<Institute> response = new ResponseEntity<>(insituteCreated, HttpStatus.OK);
+		return response;
 	}
 }
