@@ -37,9 +37,9 @@ public class RoleServiceImpl implements RoleService {
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@Transactional
 	@Override
-	public Boolean remove(Role role) {
-		roleRepository.delete((RoleImpl)role);
-		return true;
+	public Boolean deleteById(final Integer id) {
+		roleRepository.deleteById(id);
+		return Boolean.TRUE;
 	}
 	
 	@Transactional
@@ -56,7 +56,7 @@ public class RoleServiceImpl implements RoleService {
 	
 	@Transactional
 	@Override
-	public Iterable<Role> findAll(final Predicate predicate) {	
+	public Iterable<RoleImpl> findAll(final Predicate predicate) {	
 		return roleRepository.findAll(predicate);
 	}
 }

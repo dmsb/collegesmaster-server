@@ -38,11 +38,10 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/", "/institutes**").permitAll()
-			.antMatchers("/professor/**").hasAnyAuthority("PROFESSOR", "ADMINISTRATOR")
-			.antMatchers("/student/**").hasAnyAuthority("STUDENT", "ADMINISTRATOR");
+			.antMatchers("/", "/oauth/token").permitAll()
+			.antMatchers("/**").hasAuthority("ADMINISTRATOR");
 	}
-
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
@@ -50,7 +49,7 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 		.inMemoryAuthentication()
 		.withUser("test")
 		.password("$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6")//secret
-		.roles("TEST");
+		.authorities("ADMINISTRATOR");
 	}
 
 	@Bean

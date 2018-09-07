@@ -1,4 +1,4 @@
-package br.com.collegesmaster.integration;
+package br.com.collegesmaster.integration.institute;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,11 +17,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.collegesmaster.institute.model.entity.impl.InstituteImpl;
+import br.com.collegesmaster.integration.IntegrationTestConfiguration;
 
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class InstituteIntegrationTest extends IntegrationTestUtils {
+public class InstituteIntegrationTest extends IntegrationTestConfiguration {
 	
 	@Test
 	public void test_001_givenToken_whenGetInstitutes_thenStatus200()
@@ -49,7 +50,7 @@ public class InstituteIntegrationTest extends IntegrationTestUtils {
 		institute.setState("PE");
 		
 		final ObjectMapper mapper = new ObjectMapper();
-		final String instituteToJson = mapper.writerWithType(InstituteImpl.class).writeValueAsString(institute);
+		final String instituteToJson = mapper.writeValueAsString(institute);
 		
 		
 	    mvc.perform(post("/institutes/create").header("Authorization", "Bearer " + accessToken)

@@ -1,8 +1,7 @@
 package br.com.collegesmaster.institute.model.service.impl;
 
-import static java.lang.Boolean.TRUE;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,11 +28,12 @@ public class InstituteServiceImpl implements InstituteService {
 		return instituteRepository.save((InstituteImpl)institute);
 	}
 	
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@Transactional
 	@Override
-	public Boolean remove(final Institute institute) {
-		instituteRepository.delete((InstituteImpl)institute);
-		return TRUE;
+	public Boolean deleteById(final Integer id) {
+		instituteRepository.deleteById(id);
+		return Boolean.TRUE;
 	}
 	
 	@Transactional

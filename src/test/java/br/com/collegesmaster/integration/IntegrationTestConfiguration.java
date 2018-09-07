@@ -24,7 +24,7 @@ import br.com.collegesmaster.config.ApplicationBoot;
 @SpringBootTest(classes = ApplicationBoot.class)
 @TestPropertySource("classpath:application-test.properties")
 @AutoConfigureMockMvc
-public class IntegrationTestUtils {
+public class IntegrationTestConfiguration {
 	
 	@Autowired
     private WebApplicationContext wac;
@@ -33,11 +33,14 @@ public class IntegrationTestUtils {
     private FilterChainProxy springSecurityFilterChain;
 	
     protected MockMvc mvc;
+    
+    protected String oauthAccessToken;
 	
     @Before
-    public void beforeTest() {
+    public void beforeTest() throws Exception {
     	this.mvc = MockMvcBuilders.webAppContextSetup(this.wac)
     	          .addFilter(springSecurityFilterChain).build();
+    	this.oauthAccessToken = this.obtainAccessToken("test", "secret");
     }
     
     protected String obtainAccessToken(String username, String password) throws Exception {
@@ -47,7 +50,7 @@ public class IntegrationTestUtils {
         params.add("client_id", "angular-client");
         params.add("username", username);
         params.add("password", password);
-        
+       
         ResultActions result 
           = mvc.perform(post("/oauth/token")
             .params(params)
@@ -55,10 +58,11 @@ public class IntegrationTestUtils {
             .accept("application/json;charset=UTF-8"))
           	.andExpect(status().isOk())
           	.andExpect(content().contentType("application/json;charset=UTF-8"));
-     
+        
         String resultString = result.andReturn().getResponse().getContentAsString();
-     
+        
         JacksonJsonParser jsonParser = new JacksonJsonParser();
         return jsonParser.parseMap(resultString).get("access_token").toString();
+        	
     }
 }

@@ -32,11 +32,11 @@ public class RankingServiceImpl implements RankingService {
 	public Ranking update(final Ranking ranking) {
 		return rankingRepository.save((RankingImpl)ranking);
 	}
-
+	
 	@Transactional
 	@Override
-	public Boolean remove(final Ranking ranking) {
-		rankingRepository.delete((RankingImpl)ranking);
+	public Boolean deleteById(final Integer id) {
+		rankingRepository.deleteById(id);
 		return Boolean.TRUE;
 	}
 	

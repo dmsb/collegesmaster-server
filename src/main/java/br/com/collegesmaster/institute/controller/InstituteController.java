@@ -5,8 +5,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +36,20 @@ public class InstituteController {
 	public ResponseEntity<Institute> create(@RequestBody final InstituteImpl institute) {
 		final Institute insituteCreated = instituteService.create(institute);
 		final ResponseEntity<Institute> response = new ResponseEntity<>(insituteCreated, HttpStatus.OK);
+		return response;
+	}
+	
+	@PutMapping("/institutes/update/{id}")
+	public ResponseEntity<Institute> update(@RequestBody final InstituteImpl institute) {
+		final Institute insituteCreated = instituteService.update(institute);
+		final ResponseEntity<Institute> response = new ResponseEntity<>(insituteCreated, HttpStatus.OK);
+		return response;
+	}
+	
+	@DeleteMapping("/institutes/remove/{id}")
+	public ResponseEntity<Boolean> delete(@PathVariable final Integer id) {
+		final Boolean insituteCreated = instituteService.deleteById(id);
+		final ResponseEntity<Boolean> response = new ResponseEntity<>(insituteCreated, HttpStatus.OK);
 		return response;
 	}
 }

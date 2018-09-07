@@ -41,8 +41,8 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@Transactional
 	@Override
-	public Boolean remove(final Challenge challenge) {
-		challengeRepository.delete((ChallengeImpl)challenge);
+	public Boolean deleteById(final Integer id) {
+		challengeRepository.deleteById(id);
 		return Boolean.TRUE;
 	}
 

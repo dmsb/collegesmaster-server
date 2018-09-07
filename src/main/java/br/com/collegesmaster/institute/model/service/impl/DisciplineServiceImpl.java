@@ -30,10 +30,11 @@ public class DisciplineServiceImpl implements DisciplineService {
 		return disciplineRepository.save((DisciplineImpl)discipline);
 	}
 
+
 	@Transactional
 	@Override
-	public Boolean remove(Discipline discipline) {
-		disciplineRepository.delete((DisciplineImpl)discipline);
+	public Boolean deleteById(final Integer id) {
+		disciplineRepository.deleteById(id);
 		return Boolean.TRUE;
 	}
 	

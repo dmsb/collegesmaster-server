@@ -3,6 +3,7 @@ package br.com.collegesmaster.institute.model.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,10 +31,11 @@ public class CourseServiceImpl implements CourseService {
 		return courseRepository.save((CourseImpl)course);
 	}
 
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@Transactional
 	@Override
-	public Boolean remove(Course course) {
-		courseRepository.delete((CourseImpl)course);
+	public Boolean deleteById(final Integer id) {
+		courseRepository.deleteById(id);
 		return Boolean.TRUE;
 	}
 

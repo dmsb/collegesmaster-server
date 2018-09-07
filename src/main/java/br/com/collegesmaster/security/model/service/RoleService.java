@@ -6,6 +6,7 @@ import com.querydsl.core.types.Predicate;
 
 import br.com.collegesmaster.generics.GenericCRUD;
 import br.com.collegesmaster.security.model.entity.Role;
+import br.com.collegesmaster.security.model.entity.impl.RoleImpl;
 
 public interface RoleService extends GenericCRUD<Role> {
 	
@@ -13,5 +14,5 @@ public interface RoleService extends GenericCRUD<Role> {
 
 	List<Role> findElegiblesNames();
 	
-	Iterable<Role> findAll(Predicate predicate);
+	Iterable<RoleImpl> findAll(Predicate predicate);
 }

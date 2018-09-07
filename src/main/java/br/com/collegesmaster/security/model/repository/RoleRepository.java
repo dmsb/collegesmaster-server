@@ -11,7 +11,7 @@ import br.com.collegesmaster.security.model.entity.impl.RoleImpl;
 
 @Repository
 public interface RoleRepository extends JpaRepository<RoleImpl, Integer>,
-	QuerydslPredicateExecutor<Role>{
+	QuerydslPredicateExecutor<RoleImpl>{
 	
 	List<Role> findByNameNot(String name);
 }
