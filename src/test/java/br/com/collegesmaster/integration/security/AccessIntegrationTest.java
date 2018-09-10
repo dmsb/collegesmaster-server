@@ -22,7 +22,7 @@ import br.com.collegesmaster.integration.IntegrationTestConfiguration;
 public class AccessIntegrationTest extends IntegrationTestConfiguration {
 
 	@Test
-	public void test_001_givenWrongToken_whenGetRoles_thenStatus200() throws Exception {
+	public void test_001_givenWrongToken_whenGetAccessToken_thenStatus400() throws Exception {
 
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "password");
