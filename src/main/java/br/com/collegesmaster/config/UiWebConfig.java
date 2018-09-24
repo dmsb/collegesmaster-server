@@ -21,7 +21,8 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "br.com.collegesmaster.*.controller**" })
+@ComponentScan(basePackages = { "br.com.collegesmaster.*.controller**" },
+		basePackageClasses = {RevokeTokenEndPoint.class})
 public class UiWebConfig implements WebMvcConfigurer {
 
 	@Bean
