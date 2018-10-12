@@ -9,6 +9,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -21,8 +22,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "br.com.collegesmaster.*.controller**" },
-		basePackageClasses = {RevokeTokenEndPoint.class})
+@ComponentScan(basePackages = { "br.com.collegesmaster.*.controller**", "br.com.collegesmaster.endpoint**" })
 public class UiWebConfig implements WebMvcConfigurer {
 
 	@Bean
@@ -49,5 +49,11 @@ public class UiWebConfig implements WebMvcConfigurer {
 	    		.build()
 	            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 	    converters.add(new MappingJackson2HttpMessageConverter(objectMapper));
+	}
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/collegesmaster/**")
+			.allowedOrigins("http://localhost/4200/**").allowedMethods("GET", "POST","PUT", "DELETE");
 	}
 }

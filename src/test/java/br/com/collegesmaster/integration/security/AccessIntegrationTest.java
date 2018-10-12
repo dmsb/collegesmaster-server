@@ -1,6 +1,7 @@
 package br.com.collegesmaster.integration.security;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,5 +37,16 @@ public class AccessIntegrationTest extends IntegrationTestConfiguration {
 			.accept("application/json;charset=UTF-8"))
 			.andExpect(status().isBadRequest())
 			.andExpect(content().contentType("application/json;charset=UTF-8"));
+	}
+	
+	@Test
+	public void test_002_givenRevokeToken_whenPassToken_thenStatus200() throws Exception {
+		
+		final String accessToken = obtainAccessToken("test", "secret");
+
+		mvc.perform(delete("/oauth/token")
+			.header("TOKEN-ID", accessToken)
+			.with(httpBasic("angular-client", "secret")))
+			.andExpect(status().isOk());
 	}
 }
