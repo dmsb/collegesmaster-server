@@ -25,7 +25,7 @@ public class ChallengeResponseServiceImpl implements ChallengeResponseService {
 	@Autowired
 	private RankingService rankingBusiness;
 	
-	@PreAuthorize("hasAuthority('STUDENT', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('STUDENT', 'ADMINISTRATOR')")
 	@Transactional
 	@Override
 	public ChallengeResponse create(final ChallengeResponse response) {

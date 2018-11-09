@@ -7,12 +7,15 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.Question;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.challenge.model.repository.ChallengeRepository;
 import br.com.collegesmaster.challenge.model.service.ChallengeService;
 import br.com.collegesmaster.challenge.model.service.QuestionService;
+import br.com.collegesmaster.facades.AuthenticationFacade;
 import br.com.collegesmaster.security.model.entity.User;
 
 @Service("challengeService")
@@ -22,23 +25,26 @@ public class ChallengeServiceImpl implements ChallengeService {
 	private ChallengeRepository challengeRepository;
 	
 	@Autowired
+	private AuthenticationFacade authenticationFacade;
+	
+	@Autowired
 	private QuestionService questionService;
 	
-	@PreAuthorize("hasAuthority('PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")
 	@Transactional
 	@Override
 	public Challenge create(final Challenge challenge) {
 		return challengeRepository.save((ChallengeImpl)challenge);
 	}
 	
-	@PreAuthorize("hasAuthority('PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")
 	@Transactional
 	@Override
 	public Challenge update(final Challenge challenge) {
 		return challengeRepository.save((ChallengeImpl)challenge);
 	}
 	
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 	@Transactional
 	@Override
 	public Boolean deleteById(final Integer id) {
@@ -46,7 +52,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return Boolean.TRUE;
 	}
 
-	@PreAuthorize("hasAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")
 	@Transactional(readOnly = true)
 	public Challenge findById(Integer id) {
 		return challengeRepository
@@ -60,10 +66,17 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return questionService.findByChallenge(selectedChallenge);
 	}
 	
-	@PreAuthorize("hasAuthority('PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")
 	@Transactional(readOnly = true)
 	@Override
 	public List<Challenge> findByUser(final User user) {
 		return challengeRepository.findByUser(user);
+	}
+	
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
+	@Transactional(readOnly = true)
+	public Iterable<ChallengeImpl> findByPredicate(final Predicate predicate) {
+		authenticationFacade.getAuthentication();
+		return this.challengeRepository.findAll(predicate);
 	}
 }
