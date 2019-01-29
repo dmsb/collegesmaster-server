@@ -18,6 +18,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
@@ -37,6 +38,7 @@ public class InstituteImpl extends ModelImpl implements Institute {
     @Size(min = 3)
     private String name;
     
+    @JsonIgnore
     @NotAudited
     @OneToMany(targetEntity = CourseImpl.class, cascade = ALL, 
     		fetch = LAZY, orphanRemoval = true, mappedBy = "institute")

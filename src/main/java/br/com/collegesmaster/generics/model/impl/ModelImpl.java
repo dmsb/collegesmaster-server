@@ -20,7 +20,7 @@ import br.com.collegesmaster.generics.model.Model;
 
 @MappedSuperclass
 @Access(FIELD)
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"hibernateLazyInitializer", "handler"})
 public class ModelImpl implements Model {
 
 	private static final long serialVersionUID = 4826226883387639382L;

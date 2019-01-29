@@ -27,7 +27,7 @@ public class DBUnitUtil {
         IDatabaseConnection db_conn = null;
         try {
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/collegesmaster?useSSL=true&useTimezone=true&serverTimezone=UTC", "root", "root");
+                    "jdbc:mysql://localhost:3306/collegesmaster?useSSL=false&useTimezone=true&serverTimezone=UTC", "root", "root");
             db_conn = new DatabaseConnection(conn, "collegesmaster");
             final DatabaseConfig dbConfig = db_conn.getConfig();
             dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory());

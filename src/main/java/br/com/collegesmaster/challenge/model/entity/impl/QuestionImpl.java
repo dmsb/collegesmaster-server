@@ -22,6 +22,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.Question;
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
@@ -48,6 +50,7 @@ public class QuestionImpl extends ModelImpl implements Question {
 		orphanRemoval = true, mappedBy = "question")
 	private Collection<AlternativeImpl> alternatives;
 
+	@JsonIgnore
 	@NotNull
 	@ManyToOne(targetEntity = ChallengeImpl.class, optional = false, fetch = LAZY)
 	@JoinColumn(name = "challengeFK", referencedColumnName = "id", updatable = false,

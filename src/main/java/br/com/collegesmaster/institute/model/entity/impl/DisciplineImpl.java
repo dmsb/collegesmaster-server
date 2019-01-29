@@ -43,8 +43,7 @@ public class DisciplineImpl extends ModelImpl implements Discipline {
 	@NotNull
     @Column(name = "name", length = 30, nullable = false)
     private String name;
-	
-	@JsonIgnore
+
     @NotNull
     @ManyToOne(targetEntity = CourseImpl.class, optional = false, fetch = EAGER)
     @JoinColumn(name = "courseFK", referencedColumnName = "id",
@@ -52,6 +51,7 @@ public class DisciplineImpl extends ModelImpl implements Discipline {
     private Course course;
 	
 	@NotAudited
+	@JsonIgnore
     @OneToMany(cascade = ALL, fetch = LAZY,
     		orphanRemoval = true, mappedBy = "discipline")
     private Collection<ChallengeImpl> challenges;

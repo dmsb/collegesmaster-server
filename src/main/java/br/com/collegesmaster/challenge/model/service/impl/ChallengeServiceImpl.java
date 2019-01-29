@@ -15,7 +15,6 @@ import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.challenge.model.repository.ChallengeRepository;
 import br.com.collegesmaster.challenge.model.service.ChallengeService;
 import br.com.collegesmaster.challenge.model.service.QuestionService;
-import br.com.collegesmaster.facades.AuthenticationFacade;
 import br.com.collegesmaster.security.model.entity.User;
 
 @Service("challengeService")
@@ -23,9 +22,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 	
 	@Autowired
 	private ChallengeRepository challengeRepository;
-	
-	@Autowired
-	private AuthenticationFacade authenticationFacade;
 	
 	@Autowired
 	private QuestionService questionService;
@@ -76,7 +72,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
 	@Transactional(readOnly = true)
 	public Iterable<ChallengeImpl> findByPredicate(final Predicate predicate) {
-		authenticationFacade.getAuthentication();
 		return this.challengeRepository.findAll(predicate);
 	}
 }

@@ -40,13 +40,13 @@ public class CourseImpl extends ModelImpl implements Course {
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 	
-	@JsonIgnore
 	@NotNull
 	@ManyToOne(targetEntity = InstituteImpl.class, optional = false, fetch = EAGER)
 	@JoinColumn(name = "instituteFK", referencedColumnName = "id", updatable = false,
 		foreignKey = @ForeignKey(name = "COURSE_instituteFK"))
 	private Institute institute;
 	
+	@JsonIgnore
 	@NotNull
 	@OneToMany(targetEntity = DisciplineImpl.class, cascade = ALL, fetch = LAZY,
 			orphanRemoval = true, mappedBy = "course")
