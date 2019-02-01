@@ -79,10 +79,10 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
 	@Transactional(readOnly = true)
 	public Iterable<ChallengeImpl> findByPredicate(final Predicate predicate) {
-		final UserDetails loggedUser = (UserDetails) authenticationFacade.getAuthentication();
+		final String loggedUsername = authenticationFacade.getAuthentication().getName();
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
 		
-		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUser.getUsername()));
+		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUsername));
 		return this.challengeRepository.findAll(predicate);
 	}
 }
