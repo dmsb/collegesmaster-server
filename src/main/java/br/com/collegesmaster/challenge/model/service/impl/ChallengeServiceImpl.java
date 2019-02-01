@@ -4,21 +4,28 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.Question;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
+import br.com.collegesmaster.challenge.model.entity.impl.QChallengeImpl;
 import br.com.collegesmaster.challenge.model.repository.ChallengeRepository;
 import br.com.collegesmaster.challenge.model.service.ChallengeService;
 import br.com.collegesmaster.challenge.model.service.QuestionService;
+import br.com.collegesmaster.generics.facade.AuthenticationFacade;
 import br.com.collegesmaster.security.model.entity.User;
 
 @Service("challengeService")
 public class ChallengeServiceImpl implements ChallengeService {
+	
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
 	
 	@Autowired
 	private ChallengeRepository challengeRepository;
@@ -72,6 +79,10 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
 	@Transactional(readOnly = true)
 	public Iterable<ChallengeImpl> findByPredicate(final Predicate predicate) {
+		final UserDetails loggedUser = (UserDetails) authenticationFacade.getAuthentication();
+		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
+		
+		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUser.getUsername()));
 		return this.challengeRepository.findAll(predicate);
 	}
 }

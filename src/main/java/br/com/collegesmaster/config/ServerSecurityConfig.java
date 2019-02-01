@@ -21,7 +21,7 @@ import br.com.collegesmaster.security.model.service.UserService;
 @Configuration
 @EnableWebSecurity
 @EnableWebMvc
-@ComponentScan(basePackages= "br.com.collegesmaster.*.model.service")
+@ComponentScan(basePackages= {"br.com.collegesmaster.*.model.service", "br.com.collegesmaster.*.facade"})
 @EnableJpaRepositories("br.com.collegesmaster.*.model.repository")
 @EntityScan("br.com.collegesmaster.*.model.entity")
 public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
