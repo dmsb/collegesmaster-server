@@ -48,7 +48,7 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	private String title;
 	
 	@NotNull
-	@ManyToOne(targetEntity = UserImpl.class, optional = false, fetch = LAZY)
+	@ManyToOne(targetEntity = UserImpl.class, optional = false, fetch = EAGER)
 	@JoinColumn(name = "userFK", referencedColumnName = "id", updatable = false,
 		foreignKey = @ForeignKey(name = "CHALLENGE_userFK"))
 	private User user;
