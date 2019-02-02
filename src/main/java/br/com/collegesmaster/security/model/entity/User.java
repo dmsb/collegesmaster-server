@@ -16,15 +16,7 @@ import br.com.collegesmaster.security.model.entity.impl.UserImpl;
 @JsonDeserialize(as = UserImpl.class)
 public interface User extends Model, UserDetails {
 
-	String getSalt();
-
-	void setSalt(String salt);
-
-	String getUsername();
-
 	void setUsername(String username);
-
-	String getPassword();
 
 	void setPassword(String password);
 
@@ -61,8 +53,6 @@ public interface User extends Model, UserDetails {
 	Boolean isUserInRole(final String roleName);
 
 	void parseCpfToCrude();
-
-	void encriptyPassword();
 
 	Boolean isUserInAnyRoles(final List<String> roleNames);
 

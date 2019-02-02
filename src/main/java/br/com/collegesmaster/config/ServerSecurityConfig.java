@@ -49,7 +49,8 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 		.inMemoryAuthentication()
 		.withUser("test")
 		.password("$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6")//secret
-		.authorities("ADMINISTRATOR");
+		.authorities("ADMINISTRATOR")
+		;
 	}
 
 	@Bean

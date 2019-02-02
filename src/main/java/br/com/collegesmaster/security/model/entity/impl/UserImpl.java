@@ -41,7 +41,6 @@ import br.com.collegesmaster.institute.model.entity.Course;
 import br.com.collegesmaster.institute.model.entity.impl.CourseImpl;
 import br.com.collegesmaster.security.model.entity.User;
 import br.com.collegesmaster.security.model.service.impl.Password;
-import br.com.collegesmaster.security.model.service.impl.PasswordEncoderWithSalt;
 
 @Entity
 @Table(name = "user",
@@ -66,11 +65,6 @@ public class UserImpl extends ModelImpl implements User {
     @Basic(fetch = LAZY)
 	@Column(name = "password", nullable = false, length = 88)
     private String password;
-
-	@NotNull
-    @Basic(fetch = LAZY)
-	@Column(name = "salt", nullable = false, length = 44)
-    private String salt;
 	
 	@NotNull
 	@CPF
@@ -110,15 +104,6 @@ public class UserImpl extends ModelImpl implements User {
     private Collection<RoleImpl> roles;
     
     @PrePersist
-    @Override
-	public void encriptyPassword() {
-    	final PasswordEncoderWithSalt encoder = new PasswordEncoderWithSalt();
-    	final String salt = encoder.generateSalt();	
-		this.setSalt(salt);
-		this.setPassword(encoder.generateHashedPassword(getPassword(), salt));
-		this.parseCpfToCrude();
-    }
-    
     @PreUpdate
     @Override
 	public void parseCpfToCrude() {
@@ -194,16 +179,6 @@ public class UserImpl extends ModelImpl implements User {
 	@Override
 	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
-	}	
-
-	@Override
-	public String getSalt() {		
-		return salt;
-	}
-
-	@Override
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
     
     @Override
@@ -296,4 +271,5 @@ public class UserImpl extends ModelImpl implements User {
     public int hashCode() {
         return Objects.hash(id, username);
     }
+
 }
