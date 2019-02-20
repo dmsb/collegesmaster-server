@@ -85,12 +85,12 @@
 	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='12' userFK='4' />
 	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='13' userFK='4' />
 	 
-	<challenge title='Challenge 1' disciplineFK='4' userFK='1' enabled='true' challengetType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 2' disciplineFK='1' userFK='3' enabled='true' challengetType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 3' disciplineFK='2' userFK='2' enabled='true' challengetType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 4' disciplineFK='2' userFK='3' enabled='true' challengetType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 5' disciplineFK='2' userFK='3' enabled='true' challengetType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 6' disciplineFK='1' userFK='3' enabled='true' challengetType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 1' disciplineFK='4' userFK='1' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 2' disciplineFK='1' userFK='3' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 3' disciplineFK='2' userFK='2' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 4' disciplineFK='2' userFK='3' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 5' disciplineFK='2' userFK='3' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 6' disciplineFK='1' userFK='3' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 
 	<question description='Question about Internet Protocols' punctuation='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<question description='Question about Math' punctuation='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />

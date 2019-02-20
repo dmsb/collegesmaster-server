@@ -30,9 +30,9 @@ public interface Challenge extends Model {
 
 	String getTitle();
 
-	void setChallengetType(ChallengeType challengetType);
+	void setChallengeType(ChallengeType challengetType);
 
-	ChallengeType getChallengetType();
+	ChallengeType getChallengeType();
 
 	void setEnabled(Boolean enabled);
 

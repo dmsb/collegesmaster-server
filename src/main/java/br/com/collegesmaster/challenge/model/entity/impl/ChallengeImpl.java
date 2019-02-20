@@ -19,12 +19,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.enums.ChallengeType;
@@ -59,7 +60,8 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 		foreignKey = @ForeignKey(name = "CHALLENGE_disciplineFK"))
 	private Discipline discipline;
 	
-	@NotBlank
+	@JsonManagedReference
+	@NotNull
 	@NotAudited
 	@OneToMany(targetEntity = QuestionImpl.class, cascade = ALL, fetch = LAZY, 
 		orphanRemoval = true, mappedBy="challenge")
@@ -72,8 +74,8 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	@NotNull
 	@Enumerated(STRING)
 	@Basic(fetch = LAZY, optional = false)
-	@Column(name = "challengetType", length = 15, nullable = false)
-	private ChallengeType challengetType;
+	@Column(name = "challengeType", length = 15, nullable = false)
+	private ChallengeType challengeType;
 	
 	@Override
 	public User getUser() {
@@ -126,13 +128,13 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	}
 
 	@Override
-	public ChallengeType getChallengetType() {
-		return challengetType;
+	public ChallengeType getChallengeType() {
+		return challengeType;
 	}
 
 	@Override
-	public void setChallengetType(ChallengeType challengetType) {
-		this.challengetType = challengetType;
+	public void setChallengeType(ChallengeType challengeType) {
+		this.challengeType = challengeType;
 	}
 
 	@Override

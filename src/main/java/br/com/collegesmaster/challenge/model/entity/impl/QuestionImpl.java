@@ -2,7 +2,6 @@ package br.com.collegesmaster.challenge.model.entity.impl;
 
 import static javax.persistence.AccessType.FIELD;
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 
 import java.util.Collection;
@@ -17,12 +16,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.Question;
@@ -45,12 +44,13 @@ public class QuestionImpl extends ModelImpl implements Question {
 	@Column(name = "punctuation", nullable = false, length = 11)
 	private Integer punctuation;
 
-	@NotBlank
-	@OneToMany(targetEntity = AlternativeImpl.class, cascade = ALL, fetch = EAGER, 
+	@JsonManagedReference
+	@NotNull
+	@OneToMany(targetEntity = AlternativeImpl.class, cascade = ALL, fetch = LAZY, 
 		orphanRemoval = true, mappedBy = "question")
 	private Collection<AlternativeImpl> alternatives;
 
-	@JsonIgnore
+	@JsonBackReference
 	@NotNull
 	@ManyToOne(targetEntity = ChallengeImpl.class, optional = false, fetch = LAZY)
 	@JoinColumn(name = "challengeFK", referencedColumnName = "id", updatable = false,

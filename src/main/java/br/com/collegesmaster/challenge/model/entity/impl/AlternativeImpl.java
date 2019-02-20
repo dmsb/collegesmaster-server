@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import br.com.collegesmaster.challenge.model.entity.Alternative;
 import br.com.collegesmaster.challenge.model.entity.Question;
@@ -50,7 +50,7 @@ public class AlternativeImpl extends ModelImpl implements Alternative {
 	@Column(name = "isTrue", nullable = false)
 	private Boolean isTrue;
 	
-    @JsonIgnore
+    @JsonBackReference
     @NotNull
 	@ManyToOne(targetEntity = QuestionImpl.class, optional = false, fetch = LAZY)
 	@JoinColumn(name = "questionFK", referencedColumnName = "id", 
