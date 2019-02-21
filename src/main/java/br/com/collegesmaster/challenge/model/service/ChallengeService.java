@@ -2,6 +2,8 @@ package br.com.collegesmaster.challenge.model.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.querydsl.core.types.Predicate;
@@ -22,4 +24,6 @@ public interface ChallengeService extends GenericCRUD<Challenge> {
 	List<Challenge> findByUser(User user);
 	
 	Iterable<ChallengeImpl> findByPredicate(final Predicate predicate);
+	
+	Page<ChallengeImpl> findByPredicate(final Predicate predicate, Pageable pageable);
 }

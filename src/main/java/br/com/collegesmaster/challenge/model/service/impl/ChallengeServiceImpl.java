@@ -3,6 +3,8 @@ package br.com.collegesmaster.challenge.model.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,11 +79,23 @@ public class ChallengeServiceImpl implements ChallengeService {
 	
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
 	@Transactional(readOnly = true)
+	@Override
 	public Iterable<ChallengeImpl> findByPredicate(final Predicate predicate) {
 		final String loggedUsername = authenticationFacade.getAuthentication().getName();
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
 		
 		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUsername));
 		return this.challengeRepository.findAll(predicate);
+	}
+
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
+	@Transactional(readOnly = true)
+	@Override
+	public Page<ChallengeImpl> findByPredicate(Predicate predicate, Pageable pageable) {
+		final String loggedUsername = authenticationFacade.getAuthentication().getName();
+		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
+		
+		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUsername));
+		return this.challengeRepository.findAll(predicate, pageable);
 	}
 }

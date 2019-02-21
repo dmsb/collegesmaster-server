@@ -3,6 +3,8 @@ package br.com.collegesmaster.challenge.controller;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +28,10 @@ public class ChallengeController {
 	
 	@GetMapping("/challenges")
 	@ResponseBody
-	public ResponseEntity<Iterable<ChallengeImpl>> findChallenges(
-			@QuerydslPredicate(root = ChallengeImpl.class) final Predicate predicate) {
-		final Iterable<ChallengeImpl> result = this.challengeService.findByPredicate(predicate);
-		return new ResponseEntity<Iterable<ChallengeImpl>>(result, null, HttpStatus.OK);
+	public ResponseEntity<Page<ChallengeImpl>> findChallenges(
+			@QuerydslPredicate(root = ChallengeImpl.class) final Predicate predicate, Pageable pageable) {
+		final Page<ChallengeImpl> result = this.challengeService.findByPredicate(predicate, pageable);
+		return new ResponseEntity<Page<ChallengeImpl>>(result, null, HttpStatus.OK);
 	}
 	
 	@PutMapping("/challenges/{id}")
