@@ -13,6 +13,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
@@ -29,6 +31,7 @@ import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
 import br.com.collegesmaster.institute.model.entity.Course;
 import br.com.collegesmaster.institute.model.entity.Discipline;
+import br.com.collegesmaster.security.model.entity.impl.UserImpl;
 
 @Entity
 @Table(name = "discipline")
@@ -55,8 +58,16 @@ public class DisciplineImpl extends ModelImpl implements Discipline {
     @OneToMany(cascade = ALL, fetch = LAZY,
     		orphanRemoval = true, mappedBy = "discipline")
     private Collection<ChallengeImpl> challenges;
-    
-    public DisciplineImpl() {
+	
+    @ManyToMany(fetch = LAZY)
+    @JoinTable(name="discipline_has_related_users",
+	    joinColumns = {@JoinColumn(name="disciplineFK", referencedColumnName = "id")},
+	    foreignKey = @ForeignKey(name = "UR_disciplineFK"),
+	    inverseJoinColumns = {@JoinColumn(name="reletedUserFK", referencedColumnName = "id")},
+	    inverseForeignKey = @ForeignKey(name = "UR_reletedUserFK"))
+    private Collection<UserImpl> relatedUsersInSemeter;
+
+	public DisciplineImpl() {
     	
 	}
     
@@ -94,6 +105,16 @@ public class DisciplineImpl extends ModelImpl implements Discipline {
 	@Override
 	public void setChallenges(Collection<ChallengeImpl> challenges) {
 		this.challenges = challenges;
+	}
+	
+    @Override
+	public Collection<UserImpl> getRelatedUsersInSemeter() {
+		return relatedUsersInSemeter;
+	}
+
+	@Override
+	public void setRelatedUsersInSemeter(Collection<UserImpl> relatedUsersInSemeter) {
+		this.relatedUsersInSemeter = relatedUsersInSemeter;
 	}
 
 	@Override

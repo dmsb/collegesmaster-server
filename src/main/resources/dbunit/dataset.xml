@@ -59,6 +59,12 @@
 		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' courseFK='4'
 		birthdate='1998-10-17 00:00:00' cpf='34796683305' email='juca1@gmail.com' firstname='Lucas' lastname='Muniz' />	
 	
+	<discipline_has_related_users reletedUserFK='1' disciplineFK='1' />
+	<discipline_has_related_users reletedUserFK='1' disciplineFK='2' />
+	<discipline_has_related_users reletedUserFK='2' disciplineFK='1' />
+	<discipline_has_related_users reletedUserFK='3' disciplineFK='3' />
+	<discipline_has_related_users reletedUserFK='4' disciplineFK='2' />
+	
 	<role name='PROFESSOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<role name='STUDENT' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<role name='ADMINISTRATOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />

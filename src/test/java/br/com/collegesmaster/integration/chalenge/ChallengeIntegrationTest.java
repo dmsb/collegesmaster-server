@@ -31,6 +31,6 @@ public class ChallengeIntegrationTest extends IntegrationTestConfiguration {
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.length()", is(0)));
+				.andExpect(jsonPath("$.length()", is(10)));
 	}
 }

@@ -85,7 +85,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
 		
 		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUsername));
-		return this.challengeRepository.findAll(predicate);
+		return this.challengeRepository.findAll(booleanBuilderQuery.getValue());
 	}
 
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
@@ -96,6 +96,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
 		
 		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUsername));
-		return this.challengeRepository.findAll(predicate, pageable);
+		return this.challengeRepository.findAll(booleanBuilderQuery.getValue(), pageable);
 	}
 }

@@ -45,7 +45,7 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	
 	@NotNull
 	@Size(min = 2, max = 50)
-	@Column(name= "title", nullable = false, length = 30)
+	@Column(name= "title", nullable = false, length = 50)
 	private String title;
 	
 	@NotNull
