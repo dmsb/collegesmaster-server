@@ -1,11 +1,14 @@
 package br.com.collegesmaster.challenge.model.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import br.com.collegesmaster.challenge.model.entity.Challenge;
-import br.com.collegesmaster.challenge.model.entity.Question;
+import com.querydsl.core.types.Predicate;
+
+import br.com.collegesmaster.challenge.model.entity.impl.QuestionImpl;
 
 public interface QuestionService {
-
-	List<Question> findByChallenge(Challenge challenge);
+	
+	Page<QuestionImpl> findQuestions(final Predicate predicate, Pageable pageable);
+	
 }

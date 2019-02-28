@@ -13,12 +13,10 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 
 import br.com.collegesmaster.challenge.model.entity.Challenge;
-import br.com.collegesmaster.challenge.model.entity.Question;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.challenge.model.entity.impl.QChallengeImpl;
 import br.com.collegesmaster.challenge.model.repository.ChallengeRepository;
 import br.com.collegesmaster.challenge.model.service.ChallengeService;
-import br.com.collegesmaster.challenge.model.service.QuestionService;
 import br.com.collegesmaster.generics.facade.AuthenticationFacade;
 import br.com.collegesmaster.security.model.entity.User;
 
@@ -30,9 +28,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 	
 	@Autowired
 	private ChallengeRepository challengeRepository;
-	
-	@Autowired
-	private QuestionService questionService;
 	
 	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")
 	@Transactional
@@ -62,12 +57,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return challengeRepository
 					.findById(id)
 					.orElse(null);
-	}
-	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Question> findQuestionsByChallenge(final Challenge selectedChallenge) {
-		return questionService.findByChallenge(selectedChallenge);
 	}
 	
 	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")

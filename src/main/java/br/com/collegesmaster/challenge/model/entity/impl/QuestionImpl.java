@@ -2,6 +2,7 @@ package br.com.collegesmaster.challenge.model.entity.impl;
 
 import static javax.persistence.AccessType.FIELD;
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 
 import java.util.Collection;
@@ -20,7 +21,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.collegesmaster.challenge.model.entity.Challenge;
@@ -50,9 +50,9 @@ public class QuestionImpl extends ModelImpl implements Question {
 		orphanRemoval = true, mappedBy = "question")
 	private Collection<AlternativeImpl> alternatives;
 
-	@JsonBackReference
+	@JsonManagedReference
 	@NotNull
-	@ManyToOne(targetEntity = ChallengeImpl.class, optional = false, fetch = LAZY)
+	@ManyToOne(targetEntity = ChallengeImpl.class, optional = false, fetch = EAGER)
 	@JoinColumn(name = "challengeFK", referencedColumnName = "id", updatable = false,
 		foreignKey = @ForeignKey(name = "QUESTION_challengeFK"))
 	private Challenge challenge;
