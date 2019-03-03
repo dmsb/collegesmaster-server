@@ -7,7 +7,7 @@ import com.querydsl.core.types.Predicate;
 
 import br.com.collegesmaster.challenge.model.entity.impl.QuestionImpl;
 
-public interface QuestionService {
+public interface QuestionService{
 	
 	Page<QuestionImpl> findQuestions(final Predicate predicate, Pageable pageable);
 	

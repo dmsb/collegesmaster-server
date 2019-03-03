@@ -25,7 +25,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.enums.ChallengeType;
@@ -60,7 +60,7 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 		foreignKey = @ForeignKey(name = "CHALLENGE_disciplineFK"))
 	private Discipline discipline;
 	
-	@JsonBackReference
+	@JsonManagedReference
 	@NotNull
 	@NotAudited
 	@OneToMany(targetEntity = QuestionImpl.class, cascade = ALL, fetch = LAZY, 
