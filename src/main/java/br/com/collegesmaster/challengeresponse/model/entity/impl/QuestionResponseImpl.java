@@ -1,19 +1,17 @@
 package br.com.collegesmaster.challengeresponse.model.entity.impl;
 
 import static javax.persistence.AccessType.FIELD;
-import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.LAZY;
 
+import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.Access;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,7 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.envers.Audited;
 
 import br.com.collegesmaster.challenge.model.entity.Question;
-import br.com.collegesmaster.challenge.model.entity.enums.Letter;
+import br.com.collegesmaster.challenge.model.entity.impl.AlternativeImpl;
 import br.com.collegesmaster.challenge.model.entity.impl.QuestionImpl;
 import br.com.collegesmaster.challengeresponse.model.entity.ChallengeResponse;
 import br.com.collegesmaster.challengeresponse.model.entity.QuestionResponse;
@@ -47,12 +45,14 @@ public class QuestionResponseImpl extends ModelImpl implements QuestionResponse 
 		foreignKey = @ForeignKey(name = "QR_targetQuestionFK"))
 	private Question targetQuestion;
 	
-	@NotNull
-	@Enumerated(STRING)
-	@Basic(fetch = FetchType.LAZY, optional = false)
-	@Column(name = "letter", unique = false, length = 1)
-	private Letter letter;
-		
+	@ManyToMany(fetch = LAZY)
+	@JoinTable(name="question_response_has_selected_alternatives",
+	    joinColumns = {@JoinColumn(name="questionResponseFK", referencedColumnName = "id")},
+	    foreignKey = @ForeignKey(name = "UR_questionResponseFK"),
+	    inverseJoinColumns = {@JoinColumn(name="selectedAlternativeFK", referencedColumnName = "id")},
+	    inverseForeignKey = @ForeignKey(name = "UR_selectedAlternativeFK"))
+	private Collection<AlternativeImpl> selectedAlternatives;
+	
 	@Override
 	public ChallengeResponse getChallengeResponse() {
 		return challengeResponse;
@@ -74,15 +74,15 @@ public class QuestionResponseImpl extends ModelImpl implements QuestionResponse 
 	}
 	
 	@Override
-	public Letter getLetter() {
-		return letter;
+	public Collection<AlternativeImpl> getSelectedAlternatives() {
+		return selectedAlternatives;
 	}
 
 	@Override
-	public void setLetter(Letter letter) {
-		this.letter = letter;
+	public void setSelectedAlternatives(Collection<AlternativeImpl> selectedAlternatives) {
+		this.selectedAlternatives = selectedAlternatives;
 	}
-	
+
 	@Override
 	public boolean equals(final Object objectToBeComparated) {
 		

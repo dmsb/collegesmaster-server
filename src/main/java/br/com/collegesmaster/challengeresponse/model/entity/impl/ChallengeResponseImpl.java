@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
+import br.com.collegesmaster.challenge.model.entity.Alternative;
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.impl.AlternativeImpl;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
@@ -73,7 +74,7 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 			.forEach(response -> { selectQuestionToProcessPunctuation(response); });
 	}
 
-	private void selectQuestionToProcessPunctuation(QuestionResponse response) {
+	private void selectQuestionToProcessPunctuation(final QuestionResponse response) {
 		response.getTargetQuestion()
 		.getAlternatives().stream()
 			.forEach(alternative -> {					
@@ -82,9 +83,11 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	}
 
 	@Override
-	public void addPunctuation(final QuestionResponse response, AlternativeImpl alternative) {
-		if(alternative.getIsTrue() && 
-				alternative.getLetter().equals(response.getLetter())) {
+	public void addPunctuation(final QuestionResponse response, final AlternativeImpl alternative) {
+		
+		final Alternative selectedAlternative = response.getSelectedAlternatives()
+				.stream().findFirst().orElse(null);
+		if(alternative.getIsTrue() && alternative.getLetter().equals(selectedAlternative.getLetter())) {
 			punctuation = punctuation + response.getTargetQuestion().getPunctuation();
 		}
 	}

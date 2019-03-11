@@ -1,9 +1,11 @@
 package br.com.collegesmaster.challengeresponse.model.entity;
 
+import java.util.Collection;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import br.com.collegesmaster.challenge.model.entity.Question;
-import br.com.collegesmaster.challenge.model.entity.enums.Letter;
+import br.com.collegesmaster.challenge.model.entity.impl.AlternativeImpl;
 import br.com.collegesmaster.challengeresponse.model.entity.impl.QuestionResponseImpl;
 import br.com.collegesmaster.generics.model.Model;
 
@@ -18,8 +20,8 @@ public interface QuestionResponse extends Model {
 
 	ChallengeResponse getChallengeResponse();
 
-	void setLetter(Letter letter);
+	void setSelectedAlternatives(Collection<AlternativeImpl> selectedAlternatives);
 
-	Letter getLetter();
+	Collection<AlternativeImpl> getSelectedAlternatives();
 
 }
