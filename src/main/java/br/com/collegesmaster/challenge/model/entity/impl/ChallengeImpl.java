@@ -28,6 +28,7 @@ import org.hibernate.envers.NotAudited;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.collegesmaster.challenge.model.entity.Challenge;
+import br.com.collegesmaster.challenge.model.entity.enums.ChallengeStatus;
 import br.com.collegesmaster.challenge.model.entity.enums.ChallengeType;
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
 import br.com.collegesmaster.institute.model.entity.Discipline;
@@ -73,8 +74,14 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	
 	@NotNull
 	@Enumerated(STRING)
-	@Basic(fetch = LAZY, optional = false)
-	@Column(name = "challengeType", length = 15, nullable = false)
+	@Basic(fetch = EAGER, optional = false)
+	@Column(name = "challengeStatus", length = 25, nullable = false)
+	private ChallengeStatus challengeStatus;
+	
+	@NotNull
+	@Enumerated(STRING)
+	@Basic(fetch = EAGER, optional = false)
+	@Column(name = "challengeType", length = 25, nullable = false)
 	private ChallengeType challengeType;
 	
 	@Override
@@ -125,6 +132,16 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	@Override
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	@Override
+	public ChallengeStatus getChallengeStatus() {
+		return challengeStatus;
+	}
+
+	@Override
+	public void setChallengeStatus(ChallengeStatus challengeStatus) {
+		this.challengeStatus = challengeStatus;
 	}
 
 	@Override

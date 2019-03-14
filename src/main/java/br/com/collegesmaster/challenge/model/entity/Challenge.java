@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import br.com.collegesmaster.challenge.model.entity.enums.ChallengeStatus;
 import br.com.collegesmaster.challenge.model.entity.enums.ChallengeType;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.challenge.model.entity.impl.QuestionImpl;
@@ -37,5 +38,9 @@ public interface Challenge extends Model {
 	void setEnabled(Boolean enabled);
 
 	Boolean getEnabled();
+
+	void setChallengeStatus(ChallengeStatus challengeStatus);
+
+	ChallengeStatus getChallengeStatus();
 	
 }

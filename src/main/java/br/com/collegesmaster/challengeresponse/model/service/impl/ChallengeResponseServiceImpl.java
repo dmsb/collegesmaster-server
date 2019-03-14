@@ -34,7 +34,7 @@ public class ChallengeResponseServiceImpl implements ChallengeResponseService {
 		if(result == null) {
 			final ChallengeResponse createdResponse = challengeResponseRepository.save((ChallengeResponseImpl)response);
 			if(createdResponse != null) {
-				rankingBusiness.addPunctuationToUser(response);
+				rankingBusiness.addScoreToUser(response);
 			}
 			return createdResponse;
 		} 

@@ -15,9 +15,9 @@ import br.com.collegesmaster.security.model.entity.User;
 public interface RankingRepository extends JpaRepository<RankingImpl, Integer>, 
 	QuerydslPredicateExecutor<RankingImpl> {
 	
-	List<Ranking> findTop5ByDisciplineOrderByPunctuation(Discipline discipline);
+	List<Ranking> findTop5ByDisciplineOrderByScore(Discipline discipline);
 	
-	List<Ranking> findTop3ByPunctuationAndDisciplineOrderByPunctuation(Integer Punctuation, Discipline discipline);
+	List<Ranking> findTop3ByScoreAndDisciplineOrderByScore(Integer Score, Discipline discipline);
 	
 	Ranking findByUserAndDiscipline(User user, Discipline discipline);	
 }

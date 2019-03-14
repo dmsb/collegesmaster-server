@@ -36,7 +36,7 @@ public class ChallengeController {
 	
 	@PutMapping("/challenges/{id}")
 	@ResponseBody
-	public ResponseEntity<Challenge> update(@RequestBody ChallengeImpl challenge, @PathParam("id") Long id) {
+	public ResponseEntity<Challenge> update(@RequestBody Challenge challenge, @PathParam("id") Long id) {
 		final Challenge updatedChallenge = this.challengeService.update(challenge);
 		return new ResponseEntity<Challenge>(updatedChallenge, null, HttpStatus.OK);
 	}

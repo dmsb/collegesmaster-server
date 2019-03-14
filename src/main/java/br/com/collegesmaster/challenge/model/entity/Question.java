@@ -15,9 +15,9 @@ public interface Question extends Model {
 
 	Collection<AlternativeImpl> getAlternatives();
 
-	void setPunctuation(Integer punctuation);
+	void setScore(Integer score);
 
-	Integer getPunctuation();
+	Integer getScore();
 
 	void setDescription(String description);
 

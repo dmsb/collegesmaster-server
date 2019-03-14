@@ -67,6 +67,7 @@
 	
 	<role name='PROFESSOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<role name='STUDENT' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<role name='MONITOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<role name='ADMINISTRATOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
 	<user_has_roles userFK='1' roleFK='1' />
@@ -75,39 +76,39 @@
 	<user_has_roles userFK='3' roleFK='3' />
 	<user_has_roles userFK='4' roleFK='2' />
 
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='1' userFK='1' />
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='2' userFK='1' />
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='3' userFK='1' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='1' userFK='1' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='2' userFK='1' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='3' userFK='1' />
 	
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='4' userFK='2' />
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='5' userFK='2' />
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='6' userFK='2' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='4' userFK='2' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='5' userFK='2' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='6' userFK='2' />
 	
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='8' userFK='3' />
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='9' userFK='3' />
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='10' userFK='3' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='8' userFK='3' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='9' userFK='3' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='10' userFK='3' />
 	
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='11' userFK='4' />
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='12' userFK='4' />
-	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' punctuation='0' disciplineFK='13' userFK='4' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='11' userFK='4' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='12' userFK='4' />
+	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='13' userFK='4' />
 	 
-	<challenge title='Challenge 1' disciplineFK='4' userFK='1' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 2' disciplineFK='1' userFK='3' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 3' disciplineFK='2' userFK='2' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 4' disciplineFK='2' userFK='3' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 5' disciplineFK='2' userFK='3' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 6' disciplineFK='1' userFK='3' enabled='true' challengeType='NORMAL' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 1' disciplineFK='4' userFK='1' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 2' disciplineFK='1' userFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 3' disciplineFK='2' userFK='2' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 4' disciplineFK='2' userFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 5' disciplineFK='2' userFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 6' disciplineFK='1' userFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 
-	<question description='Question about Internet Protocols' punctuation='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<question description='Question about Math' punctuation='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question description='Question about Internet Protocols' score='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question description='Question about Math' score='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 
-	<question description='Question about Physic' punctuation='50' challengeFK='2' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<question description='Question about maintenance' punctuation='50' challengeFK='2' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question description='Question about Physic' score='50' challengeFK='2' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question description='Question about maintenance' score='50' challengeFK='2' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 
-	<question description='Question about TDD' punctuation='50' challengeFK='3' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<question description='Question about BDD' punctuation='50' challengeFK='3' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question description='Question about TDD' score='50' challengeFK='3' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question description='Question about BDD' score='50' challengeFK='3' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
-	<question description='Question about DDD' punctuation='50' challengeFK='4' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question description='Question about DDD' score='50' challengeFK='4' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 
 	<alternative isTrue='true' description="Response 1" letter='A' questionFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<alternative isTrue='false' description="Response 2" letter='B' questionFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />

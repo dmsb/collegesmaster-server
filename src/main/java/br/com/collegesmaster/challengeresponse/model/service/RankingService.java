@@ -10,7 +10,7 @@ import br.com.collegesmaster.security.model.entity.User;
 
 public interface RankingService extends GenericCRUD<Ranking> {
 	
-	void addPunctuationToUser(ChallengeResponse challengeResponse);
+	void addScoreToUser(ChallengeResponse challengeResponse);
 	
 	Ranking findByUserAndDiscipline(User user, Discipline discipline);
 

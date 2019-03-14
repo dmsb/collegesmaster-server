@@ -43,20 +43,20 @@ public class RankingServiceImpl implements RankingService {
 	@Transactional
 	@Override
 	public List<Ranking> findTop5DisciplineOrderByPontuation(final Discipline discipline) {
-			return rankingRepository.findTop5ByDisciplineOrderByPunctuation(discipline);
+			return rankingRepository.findTop5ByDisciplineOrderByScore(discipline);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
-	public void addPunctuationToUser(final ChallengeResponse challengeResponse) {
+	public void addScoreToUser(final ChallengeResponse challengeResponse) {
 		if(challengeResponse != null && challengeResponse.getUser() != null) {
 			final Ranking userRankingInPeriod = this.findByUserAndDiscipline(
 					challengeResponse.getUser(),
 					challengeResponse.getChallenge().getDiscipline());
 			if(userRankingInPeriod != null) {
-				final Integer currentPontuation = addStudentPontuation(challengeResponse.getPunctuation(), 
-						userRankingInPeriod.getPunctuation());
-				userRankingInPeriod.setPunctuation(currentPontuation);
+				final Integer currentPontuation = addStudentPontuation(challengeResponse.getScore(), 
+						userRankingInPeriod.getScore());
+				userRankingInPeriod.setScore(currentPontuation);
 				this.update(userRankingInPeriod);
 			} else {
 				final RankingImpl newUserRanking = buildANewRanking(challengeResponse);
@@ -65,15 +65,15 @@ public class RankingServiceImpl implements RankingService {
 		}
 	}
 
-	private Integer addStudentPontuation(final Integer currentChallengeResponsePunctuation,
-			final Integer currentPunctuation) {
-		return currentPunctuation + currentChallengeResponsePunctuation;
+	private Integer addStudentPontuation(final Integer currentChallengeResponseScore,
+			final Integer currentScore) {
+		return currentScore + currentChallengeResponseScore;
 	}
 
 	private RankingImpl buildANewRanking(final ChallengeResponse challengeResponse) {
 		final RankingImpl newUserRanking = new RankingImpl();
 		newUserRanking.setDiscipline(challengeResponse.getChallenge().getDiscipline());
-		newUserRanking.setPunctuation(challengeResponse.getPunctuation());
+		newUserRanking.setScore(challengeResponse.getScore());
 		newUserRanking.setUser(challengeResponse.getUser());
 		return newUserRanking;
 	}

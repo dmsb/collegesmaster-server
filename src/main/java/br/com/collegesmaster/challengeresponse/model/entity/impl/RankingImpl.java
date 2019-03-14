@@ -35,8 +35,8 @@ public class RankingImpl extends ModelImpl implements Ranking {
 	private static final long serialVersionUID = -4429560491482142984L;
 	
 	@NotNull
-	@Column(name = "punctuation", nullable = false)
-	private Integer punctuation;
+	@Column(name = "score", nullable = false)
+	private Integer score;
 	
 	@NotNull
 	@ManyToOne(targetEntity = DisciplineImpl.class, optional = false, fetch = EAGER)
@@ -51,13 +51,13 @@ public class RankingImpl extends ModelImpl implements Ranking {
 	private User user;
 
 	@Override
-	public Integer getPunctuation() {
-		return punctuation;
+	public Integer getScore() {
+		return score;
 	}
 
 	@Override
-	public void setPunctuation(Integer punctuation) {
-		this.punctuation = punctuation;
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 
 	@Override
@@ -94,12 +94,12 @@ public class RankingImpl extends ModelImpl implements Ranking {
 		final RankingImpl objectComparatedInstance = (RankingImpl) objectToBeComparated;
 		
 		return Objects.equals(id, objectComparatedInstance.id) &&
-				Objects.equals(punctuation, objectComparatedInstance.punctuation);
+				Objects.equals(score, objectComparatedInstance.score);
 	}
 	
 	@Override
     public int hashCode() {
-        return Objects.hash(id, punctuation);
+        return Objects.hash(id, score);
     }
 
 }

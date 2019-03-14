@@ -42,8 +42,8 @@ public class QuestionImpl extends ModelImpl implements Question {
 	private String description;
 
 	@NotNull
-	@Column(name = "punctuation", nullable = false, length = 11)
-	private Integer punctuation;
+	@Column(name = "score", nullable = false, length = 11)
+	private Integer score;
 
 	@JsonManagedReference
 	@NotNull
@@ -59,13 +59,13 @@ public class QuestionImpl extends ModelImpl implements Question {
 	private Challenge challenge;
 	
 	@Override
-	public Integer getPunctuation() {
-		return punctuation;
+	public Integer getScore() {
+		return score;
 	}
 
 	@Override
-	public void setPunctuation(Integer punctuation) {
-		this.punctuation = punctuation;
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 
 	@Override
@@ -113,11 +113,11 @@ public class QuestionImpl extends ModelImpl implements Question {
 
 		return Objects.equals(this.id, objectComparatedInstance.id) && 
 				Objects.equals(description, objectComparatedInstance.description) &&
-				Objects.equals(punctuation, objectComparatedInstance.punctuation);
+				Objects.equals(score, objectComparatedInstance.score);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, description, punctuation);
+		return Objects.hash(id, description, score);
 	}
 }

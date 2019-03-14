@@ -57,8 +57,8 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	private User user;
 	
 	@NotNull
-	@Column(name = "punctuation", nullable = false, length = 11)
-	private Integer punctuation;
+	@Column(name = "score", nullable = false, length = 11)
+	private Integer score;
 	
 	@NotEmpty
 	@NotAudited
@@ -68,27 +68,27 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	@Override
 	@PrePersist
 	@PreUpdate
-	public void calculatePunctuation() {
-		punctuation = 0;
+	public void calculateScore() {
+		score = 0;
 		questionsResponse.stream()
-			.forEach(response -> { selectQuestionToProcessPunctuation(response); });
+			.forEach(response -> { selectQuestionToProcessScore(response); });
 	}
 
-	private void selectQuestionToProcessPunctuation(final QuestionResponse response) {
+	private void selectQuestionToProcessScore(final QuestionResponse response) {
 		response.getTargetQuestion()
 		.getAlternatives().stream()
 			.forEach(alternative -> {					
-			addPunctuation(response, alternative);
+			addScore(response, alternative);
 		});
 	}
 
 	@Override
-	public void addPunctuation(final QuestionResponse response, final AlternativeImpl alternative) {
+	public void addScore(final QuestionResponse response, final AlternativeImpl alternative) {
 		
 		final Alternative selectedAlternative = response.getSelectedAlternatives()
 				.stream().findFirst().orElse(null);
 		if(alternative.getIsTrue() && alternative.getLetter().equals(selectedAlternative.getLetter())) {
-			punctuation = punctuation + response.getTargetQuestion().getPunctuation();
+			score = score + response.getTargetQuestion().getScore();
 		}
 	}
 
@@ -113,13 +113,13 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	}
 
 	@Override
-	public Integer getPunctuation() {
-		return punctuation;
+	public Integer getScore() {
+		return score;
 	}
 
 	@Override
-	public void setPunctuation(Integer punctuation) {
-		this.punctuation = punctuation;
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 
 	@Override
@@ -146,12 +146,12 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 		final ChallengeResponseImpl objectComparatedInstance = (ChallengeResponseImpl) objectToBeComparated;
 		
 		return Objects.equals(this.id, objectComparatedInstance.id) && 
-				Objects.equals(this.punctuation, objectComparatedInstance.punctuation);
+				Objects.equals(this.score, objectComparatedInstance.score);
 	}
 	
 	@Override
     public int hashCode() {
-        return Objects.hash(id, punctuation);
+        return Objects.hash(id, score);
     }
 	
 }

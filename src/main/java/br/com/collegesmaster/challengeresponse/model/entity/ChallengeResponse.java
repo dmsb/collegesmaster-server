@@ -14,9 +14,9 @@ import br.com.collegesmaster.security.model.entity.User;
 @JsonDeserialize(as = ChallengeResponseImpl.class)
 public interface ChallengeResponse extends Model {
 
-	void setPunctuation(Integer punctuation);
+	void setScore(Integer score);
 
-	Integer getPunctuation();
+	Integer getScore();
 
 	void setQuestionsResponse(Collection<QuestionResponseImpl> myQuestionsResolution);
 
@@ -30,8 +30,8 @@ public interface ChallengeResponse extends Model {
 
 	Challenge getChallenge();
 
-	void addPunctuation(final QuestionResponse response, AlternativeImpl alternative);
+	void addScore(final QuestionResponse response, AlternativeImpl alternative);
 
-	void calculatePunctuation();
+	void calculateScore();
 
 }
