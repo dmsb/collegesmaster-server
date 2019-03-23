@@ -1,12 +1,16 @@
 package br.com.collegesmaster.security.model.service.impl;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.collegesmaster.generics.facade.AuthenticationFacade;
 import br.com.collegesmaster.security.model.entity.User;
 import br.com.collegesmaster.security.model.entity.impl.UserImpl;
 import br.com.collegesmaster.security.model.repository.UserRepository;
@@ -17,6 +21,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -79,5 +86,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getLoggedUserAuthorities() {
+		return authenticationFacade.getAuthentication().getAuthorities();
 	}
 }

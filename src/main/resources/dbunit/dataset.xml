@@ -71,7 +71,6 @@
 	<role name='ADMINISTRATOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
 	<user_has_roles userFK='1' roleFK='1' />
-	<user_has_roles userFK='1' roleFK='2' />
 	<user_has_roles userFK='2' roleFK='1' />
 	<user_has_roles userFK='3' roleFK='3' />
 	<user_has_roles userFK='4' roleFK='2' />
