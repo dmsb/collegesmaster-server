@@ -41,7 +41,8 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 		clients.jdbc(dataSource).withClient("angular-client")
 				.secret("$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6") // secret
 				.authorizedGrantTypes("password", "authorization_code", "refresh_token")
-				.accessTokenValiditySeconds(3600).scopes("read");
+				.accessTokenValiditySeconds(10).scopes("read", "write")
+				.refreshTokenValiditySeconds(1000).scopes("read", "write");
 	}
 
 	@Override
@@ -54,6 +55,7 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 	public ConsumerTokenServices tokenServices() {
 		DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
 		defaultTokenServices.setTokenStore(tokenStore());
+		defaultTokenServices.setSupportRefreshToken(true);
 		return defaultTokenServices;
 	}
 
