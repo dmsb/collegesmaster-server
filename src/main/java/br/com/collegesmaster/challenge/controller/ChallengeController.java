@@ -9,6 +9,7 @@ import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.querydsl.core.types.Predicate;
 
+import br.com.collegesmaster.aop.HandlingRuntimeException;
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.challenge.model.service.ChallengeService;
@@ -39,5 +41,13 @@ public class ChallengeController {
 	public ResponseEntity<Challenge> update(@RequestBody Challenge challenge, @PathParam("id") Long id) {
 		final Challenge updatedChallenge = this.challengeService.update(challenge);
 		return new ResponseEntity<Challenge>(updatedChallenge, null, HttpStatus.OK);
+	}
+	
+	@HandlingRuntimeException
+	@PostMapping("/challenges")
+	@ResponseBody
+	public ResponseEntity<Challenge> update(@RequestBody Challenge challenge) {
+		final Challenge createdChallenge = this.challengeService.create(challenge);
+		return new ResponseEntity<Challenge>(createdChallenge, null, HttpStatus.OK);
 	}
 }

@@ -55,14 +55,14 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 		foreignKey = @ForeignKey(name = "CHALLENGE_userFK"))
 	private User user;
 	
-	@NotNull
+	@NotNull(message = "{discipline.notnull}")
 	@ManyToOne(targetEntity = DisciplineImpl.class, optional = false, fetch = EAGER)
 	@JoinColumn(name = "disciplineFK", referencedColumnName = "id", 
 		foreignKey = @ForeignKey(name = "CHALLENGE_disciplineFK"))
 	private Discipline discipline;
 	
 	@JsonManagedReference
-	@NotNull
+	@NotNull(message = "{questions.notnull}")
 	@NotAudited
 	@OneToMany(targetEntity = QuestionImpl.class, cascade = ALL, fetch = LAZY, 
 		orphanRemoval = true, mappedBy="challenge")

@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,7 +22,10 @@ import br.com.collegesmaster.security.model.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages= {"br.com.collegesmaster.*.model.service", "br.com.collegesmaster.config", "br.com.collegesmaster.*.facade"})
+@EnableAspectJAutoProxy
+@ComponentScan(basePackages= {"br.com.collegesmaster.*.model.service", 
+		"br.com.collegesmaster.config", "br.com.collegesmaster.*.facade", 
+		"br.com.collegesmaster.aop", "br.com.collegesmaster.handlers"})
 @EnableJpaRepositories("br.com.collegesmaster.*.model.repository")
 @EntityScan("br.com.collegesmaster.*.model.entity")
 public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -66,4 +70,5 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder(11);
 	}
+	
 }
