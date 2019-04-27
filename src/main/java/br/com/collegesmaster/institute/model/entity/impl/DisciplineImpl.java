@@ -1,7 +1,6 @@
 package br.com.collegesmaster.institute.model.entity.impl;
 
 import static javax.persistence.AccessType.FIELD;
-import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 
@@ -16,18 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
-import org.hibernate.envers.NotAudited;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
 import br.com.collegesmaster.institute.model.entity.Course;
 import br.com.collegesmaster.institute.model.entity.Discipline;
@@ -37,8 +29,6 @@ import br.com.collegesmaster.security.model.entity.impl.UserImpl;
 @Table(name = "discipline")
 @Access(FIELD)
 @Audited
-@NamedEntityGraph(name = "graph.discipline.challenges", 
-	attributeNodes = @NamedAttributeNode("challenges"))
 public class DisciplineImpl extends ModelImpl implements Discipline {
 
     private static final long serialVersionUID = -8467860341227715787L;
@@ -52,12 +42,6 @@ public class DisciplineImpl extends ModelImpl implements Discipline {
     @JoinColumn(name = "courseFK", referencedColumnName = "id",
     	foreignKey = @ForeignKey(name = "DISCIPLINE_courseFK"))
     private Course course;
-	
-	@NotAudited
-	@JsonIgnore
-    @OneToMany(cascade = ALL, fetch = LAZY,
-    		orphanRemoval = true, mappedBy = "discipline")
-    private Collection<ChallengeImpl> challenges;
 	
     @ManyToMany(fetch = LAZY)
     @JoinTable(name="discipline_has_related_users",
@@ -96,16 +80,6 @@ public class DisciplineImpl extends ModelImpl implements Discipline {
 	public void setName(String name) {
         this.name = name;
     }
-	
-	@Override
-	public Collection<ChallengeImpl> getChallenges() {
-		return challenges;
-	}
-
-	@Override
-	public void setChallenges(Collection<ChallengeImpl> challenges) {
-		this.challenges = challenges;
-	}
 	
     @Override
 	public Collection<UserImpl> getRelatedUsersInSemeter() {

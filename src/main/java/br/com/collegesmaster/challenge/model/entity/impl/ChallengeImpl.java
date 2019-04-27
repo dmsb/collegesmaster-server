@@ -44,12 +44,12 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 
 	private static final long serialVersionUID = 6314730845000580522L;
 	
-	@NotNull
+	@NotNull(message = "{title.notnull}")
 	@Size(min = 2, max = 50)
 	@Column(name= "title", nullable = false, length = 50)
 	private String title;
 	
-	@NotNull
+	@NotNull(message = "{owner.notnull}")
 	@ManyToOne(targetEntity = UserImpl.class, optional = false, fetch = EAGER)
 	@JoinColumn(name = "userFK", referencedColumnName = "id", updatable = false,
 		foreignKey = @ForeignKey(name = "CHALLENGE_userFK"))
@@ -57,7 +57,7 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	
 	@NotNull(message = "{discipline.notnull}")
 	@ManyToOne(targetEntity = DisciplineImpl.class, optional = false, fetch = EAGER)
-	@JoinColumn(name = "disciplineFK", referencedColumnName = "id", 
+	@JoinColumn(name = "disciplineFK", referencedColumnName = "id", updatable = false,
 		foreignKey = @ForeignKey(name = "CHALLENGE_disciplineFK"))
 	private Discipline discipline;
 	
@@ -68,17 +68,17 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 		orphanRemoval = true, mappedBy="challenge")
 	private Collection<QuestionImpl> questions;
 	
-	@NotNull
+	@NotNull(message = "{enabled.notnull}")
 	@Column(name = "enabled", nullable = false)
 	private Boolean enabled;
 	
-	@NotNull
+	@NotNull(message = "{challenge_status.notnull}")
 	@Enumerated(STRING)
 	@Basic(fetch = EAGER, optional = false)
 	@Column(name = "challengeStatus", length = 25, nullable = false)
 	private ChallengeStatus challengeStatus;
 	
-	@NotNull
+	@NotNull(message = "{challenge_type.notnull}")
 	@Enumerated(STRING)
 	@Basic(fetch = EAGER, optional = false)
 	@Column(name = "challengeType", length = 25, nullable = false)

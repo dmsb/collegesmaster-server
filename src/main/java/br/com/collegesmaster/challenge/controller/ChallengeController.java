@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.querydsl.core.types.Predicate;
 
-import br.com.collegesmaster.aop.HandlingRuntimeException;
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.challenge.model.service.ChallengeService;
@@ -43,7 +42,6 @@ public class ChallengeController {
 		return new ResponseEntity<Challenge>(updatedChallenge, null, HttpStatus.OK);
 	}
 	
-	@HandlingRuntimeException
 	@PostMapping("/challenges")
 	@ResponseBody
 	public ResponseEntity<Challenge> update(@RequestBody Challenge challenge) {
