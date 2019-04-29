@@ -1,9 +1,9 @@
-package br.com.collegesmaster.generics.auditinfo.impl;
+package br.com.collegesmaster.auditinfo.impl;
 
 import org.hibernate.envers.RevisionListener;
 import org.jboss.logging.Logger;
 
-import br.com.collegesmaster.generics.auditinfo.AuditInfo;
+import br.com.collegesmaster.auditinfo.AuditInfo;
 
 public class AuditListener implements RevisionListener {
 	

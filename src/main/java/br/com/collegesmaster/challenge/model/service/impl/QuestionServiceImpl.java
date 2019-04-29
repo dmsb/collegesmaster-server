@@ -32,7 +32,7 @@ public class QuestionServiceImpl implements QuestionService {
 		final String loggedUsername = authenticationFacade.getAuthentication().getName();
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
 		
-		booleanBuilderQuery.and(QQuestionImpl.questionImpl.challenge.user.username.eq(loggedUsername));
+		booleanBuilderQuery.and(QQuestionImpl.questionImpl.challenge.owner.username.eq(loggedUsername));
 		return this.questionRepository.findAll(booleanBuilderQuery.getValue(), pageable);
 	}
 

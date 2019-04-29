@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import br.com.collegesmaster.generics.localization.Localization;
+import br.com.collegesmaster.generics.contracts.Localization;
 import br.com.collegesmaster.generics.model.Model;
 import br.com.collegesmaster.institute.model.entity.impl.CourseImpl;
 import br.com.collegesmaster.institute.model.entity.impl.InstituteImpl;

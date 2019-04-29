@@ -36,23 +36,23 @@ public class QuestionImpl extends ModelImpl implements Question {
 
 	private static final long serialVersionUID = -8970625810455399880L;
 	
-	@NotNull
+	@NotNull(message = "{QUESTION.description.notnull}")
 	@Lob
 	@Column(name = "description", nullable = false, unique = false, columnDefinition = "text")
 	private String description;
 
-	@NotNull
+	@NotNull(message = "{QUESTION.score.notnull}")
 	@Column(name = "score", nullable = false, length = 11)
 	private Integer score;
 
 	@JsonManagedReference
-	@NotNull
+	@NotNull(message = "{QUESTION.alternatives.notnull}")
 	@OneToMany(targetEntity = AlternativeImpl.class, cascade = ALL, fetch = LAZY, 
 		orphanRemoval = true, mappedBy = "question")
 	private Collection<AlternativeImpl> alternatives;
 
 	@JsonBackReference
-	@NotNull
+	@NotNull(message = "{QUESTION.challenge.notnull}")
 	@ManyToOne(targetEntity = ChallengeImpl.class, optional = false, fetch = EAGER)
 	@JoinColumn(name = "challengeFK", referencedColumnName = "id", updatable = false,
 		foreignKey = @ForeignKey(name = "QUESTION_challengeFK"))

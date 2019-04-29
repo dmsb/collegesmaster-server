@@ -1,4 +1,4 @@
-package br.com.collegesmaster.generics.auditinfo;
+package br.com.collegesmaster.auditinfo;
 
 public interface AuditInfo {
 

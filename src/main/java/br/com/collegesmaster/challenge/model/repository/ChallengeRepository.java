@@ -14,6 +14,6 @@ import br.com.collegesmaster.security.model.entity.User;
 public interface ChallengeRepository extends JpaRepository<ChallengeImpl, Integer>, 
 	QuerydslPredicateExecutor<ChallengeImpl> {
 	
-	List<Challenge> findByUser(User user);
+	List<Challenge> findByOwner(User owner);
 	
 }

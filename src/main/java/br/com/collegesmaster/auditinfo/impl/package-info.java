@@ -1,5 +1,5 @@
 @QueryEntities({DefaultRevisionEntity.class})
-package br.com.collegesmaster.generics.auditinfo.impl;
+package br.com.collegesmaster.auditinfo.impl;
 
 import org.hibernate.envers.DefaultRevisionEntity;
 

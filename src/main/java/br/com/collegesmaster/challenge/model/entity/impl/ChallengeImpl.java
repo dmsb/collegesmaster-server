@@ -13,6 +13,7 @@ import javax.persistence.Access;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
@@ -30,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.enums.ChallengeStatus;
 import br.com.collegesmaster.challenge.model.entity.enums.ChallengeType;
+import br.com.collegesmaster.generics.entitylisteners.OwnerListener;
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
 import br.com.collegesmaster.institute.model.entity.Discipline;
 import br.com.collegesmaster.institute.model.entity.impl.DisciplineImpl;
@@ -40,53 +42,59 @@ import br.com.collegesmaster.security.model.entity.impl.UserImpl;
 @Table(name = "challenge")
 @Access(FIELD)
 @Audited
+@EntityListeners({OwnerListener.class})
 public class ChallengeImpl extends ModelImpl implements Challenge {
 
 	private static final long serialVersionUID = 6314730845000580522L;
 	
-	@NotNull(message = "{title.notnull}")
+	@NotNull(message = "{CHALLENGE.title.notnull}")
 	@Size(min = 2, max = 50)
 	@Column(name= "title", nullable = false, length = 50)
 	private String title;
 	
-	@NotNull(message = "{owner.notnull}")
+	@NotNull(message = "{CHALLENGE.owner.notnull}")
 	@ManyToOne(targetEntity = UserImpl.class, optional = false, fetch = EAGER)
 	@JoinColumn(name = "userFK", referencedColumnName = "id", updatable = false,
 		foreignKey = @ForeignKey(name = "CHALLENGE_userFK"))
-	private User user;
+	private User owner;
 	
-	@NotNull(message = "{discipline.notnull}")
+	@NotNull(message = "{CHALLENGE.discipline.notnull}")
 	@ManyToOne(targetEntity = DisciplineImpl.class, optional = false, fetch = EAGER)
 	@JoinColumn(name = "disciplineFK", referencedColumnName = "id", updatable = false,
 		foreignKey = @ForeignKey(name = "CHALLENGE_disciplineFK"))
 	private Discipline discipline;
 	
 	@JsonManagedReference
-	@NotNull(message = "{questions.notnull}")
+	@NotNull(message = "{CHALLENGE.questions.notnull}")
 	@NotAudited
 	@OneToMany(targetEntity = QuestionImpl.class, cascade = ALL, fetch = LAZY, 
 		orphanRemoval = true, mappedBy="challenge")
 	private Collection<QuestionImpl> questions;
 	
-	@NotNull(message = "{enabled.notnull}")
+	@NotNull(message = "{CHALLENGE.enabled.notnull}")
 	@Column(name = "enabled", nullable = false)
 	private Boolean enabled;
 	
-	@NotNull(message = "{challenge_status.notnull}")
+	@NotNull(message = "{CHALLENGE.challenge_status.notnull}")
 	@Enumerated(STRING)
 	@Basic(fetch = EAGER, optional = false)
 	@Column(name = "challengeStatus", length = 25, nullable = false)
 	private ChallengeStatus challengeStatus;
 	
-	@NotNull(message = "{challenge_type.notnull}")
+	@NotNull(message = "{CHALLENGE.challenge_type.notnull}")
 	@Enumerated(STRING)
 	@Basic(fetch = EAGER, optional = false)
 	@Column(name = "challengeType", length = 25, nullable = false)
 	private ChallengeType challengeType;
 	
 	@Override
-	public User getUser() {
-		return user;
+	public User getOwner() {
+		return owner;
+	}
+	
+	@Override
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 	
 	@Override
@@ -97,11 +105,6 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	@Override
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	@Override
-	public void setUser(User user) {
-		this.user = user;
 	}
 	
 	@Override

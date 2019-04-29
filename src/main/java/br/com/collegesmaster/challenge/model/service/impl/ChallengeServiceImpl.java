@@ -67,7 +67,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Challenge> findByUser(final User user) {
-		return challengeRepository.findByUser(user);
+		return challengeRepository.findByOwner(user);
 	}
 	
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
@@ -77,7 +77,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		final String loggedUsername = authenticationFacade.getAuthentication().getName();
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
 		
-		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUsername));
+		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.owner.username.eq(loggedUsername));
 		return this.challengeRepository.findAll(booleanBuilderQuery.getValue());
 	}
 
@@ -88,7 +88,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		final String loggedUsername = authenticationFacade.getAuthentication().getName();
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
 		
-		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.user.username.eq(loggedUsername));
+		booleanBuilderQuery.and(QChallengeImpl.challengeImpl.owner.username.eq(loggedUsername));
 		return this.challengeRepository.findAll(booleanBuilderQuery.getValue(), pageable);
 	}
 }

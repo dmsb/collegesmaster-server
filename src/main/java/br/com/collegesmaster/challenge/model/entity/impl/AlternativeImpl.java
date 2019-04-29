@@ -35,23 +35,23 @@ public class AlternativeImpl extends ModelImpl implements Alternative {
 
 	private static final long serialVersionUID = -9207076283580095871L;
 	
-	@NotNull
+	@NotNull(message = "{ALTERNATIVE.letter.notnull}")
 	@Enumerated(STRING)
 	@Basic(fetch = LAZY, optional = false)
 	@Column(name = "letter", length = 1)
 	private Letter letter;
 	
-	@NotNull
+	@NotNull(message = "{ALTERNATIVE.description.notnull}")
     @Lob
     @Column(name = "description", length = 150, nullable = false, columnDefinition = "text")
     private String description;
     
-    @NotNull
+	@NotNull(message = "{ALTERNATIVE.is_true.notnull}")
 	@Column(name = "isTrue", nullable = false)
 	private Boolean isTrue;
 	
     @JsonBackReference
-    @NotNull
+    @NotNull(message = "{ALTERNATIVE.question.notnull}")
 	@ManyToOne(targetEntity = QuestionImpl.class, optional = false, fetch = LAZY)
 	@JoinColumn(name = "questionFK", referencedColumnName = "id", 
 		foreignKey = @ForeignKey(name = "ALTERNATIVE_questionFK"))

@@ -1,4 +1,4 @@
-package br.com.collegesmaster.generics.localization;
+package br.com.collegesmaster.generics.contracts;
 
 import java.io.Serializable;
 

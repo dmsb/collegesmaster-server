@@ -1,4 +1,4 @@
-package br.com.collegesmaster.generics.auditinfo.impl;
+package br.com.collegesmaster.auditinfo.impl;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -6,8 +6,7 @@ import javax.persistence.Table;
 import org.hibernate.envers.DefaultRevisionEntity;
 import org.hibernate.envers.RevisionEntity;
 
-import br.com.collegesmaster.generics.auditinfo.AuditInfo;
-
+import br.com.collegesmaster.auditinfo.AuditInfo;
 
 @Entity
 @Table(name = "audit_info")
