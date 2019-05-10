@@ -15,8 +15,10 @@ import com.querydsl.core.types.Predicate;
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
 import br.com.collegesmaster.challenge.model.entity.impl.QChallengeImpl;
+import br.com.collegesmaster.challenge.model.entity.impl.QuestionImpl;
 import br.com.collegesmaster.challenge.model.repository.ChallengeRepository;
 import br.com.collegesmaster.challenge.model.service.ChallengeService;
+import br.com.collegesmaster.challenge.model.service.QuestionService;
 import br.com.collegesmaster.generics.facade.AuthenticationFacade;
 import br.com.collegesmaster.security.model.entity.User;
 
@@ -29,6 +31,9 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@Autowired
 	private ChallengeRepository challengeRepository;
 	
+	@Autowired
+	private QuestionService questionService;
+	
 	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")
 	@Transactional
 	@Override
@@ -40,6 +45,8 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@Transactional
 	@Override
 	public Challenge update(final Challenge challenge) {
+		final List<QuestionImpl> savedQuestions = this.questionService.saveAll(challenge.getQuestions());
+		challenge.setQuestions(savedQuestions);
 		return challengeRepository.save((ChallengeImpl)challenge);
 	}
 	
@@ -48,7 +55,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@Override
 	public Boolean deleteById(final Integer id) {
 		try {
-			challengeRepository.deleteById(id);
+			this.challengeRepository.deleteById(id);
 			return Boolean.TRUE;
 		} catch (IllegalArgumentException e) {
 			return Boolean.FALSE;
@@ -58,7 +65,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@PreAuthorize("hasAnyAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")
 	@Transactional(readOnly = true)
 	public Challenge findById(Integer id) {
-		return challengeRepository
+		return this.challengeRepository
 					.findById(id)
 					.orElse(null);
 	}
@@ -67,7 +74,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Challenge> findByUser(final User user) {
-		return challengeRepository.findByOwner(user);
+		return this.challengeRepository.findByOwner(user);
 	}
 	
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")

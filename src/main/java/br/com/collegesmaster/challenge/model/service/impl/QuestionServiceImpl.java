@@ -1,5 +1,8 @@
 package br.com.collegesmaster.challenge.model.service.impl;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,9 +34,15 @@ public class QuestionServiceImpl implements QuestionService {
 	public Page<QuestionImpl> findQuestions(Predicate predicate, Pageable pageable) {
 		final String loggedUsername = authenticationFacade.getAuthentication().getName();
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
-		
+
 		booleanBuilderQuery.and(QQuestionImpl.questionImpl.challenge.owner.username.eq(loggedUsername));
 		return this.questionRepository.findAll(booleanBuilderQuery.getValue(), pageable);
 	}
-
+	
+	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR', 'STUDENT')")
+	@Transactional
+	@Override
+	public List<QuestionImpl> saveAll(Collection<QuestionImpl> questions) {
+		return this.questionRepository.saveAll(questions);
+	}
 }
