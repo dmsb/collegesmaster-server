@@ -50,7 +50,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return challengeRepository.save((ChallengeImpl)challenge);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR','PROFESSOR')")
 	@Transactional	
 	@Override
 	public void deleteById(final Integer id) {

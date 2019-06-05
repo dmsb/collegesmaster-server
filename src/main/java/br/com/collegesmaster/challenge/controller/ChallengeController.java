@@ -1,7 +1,5 @@
 package br.com.collegesmaster.challenge.controller;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,7 +37,7 @@ public class ChallengeController {
 	
 	@PutMapping("/challenges/{id}")
 	@ResponseBody
-	public ResponseEntity<Challenge> update(@RequestBody Challenge challenge, @PathParam("id") Long id) {
+	public ResponseEntity<Challenge> update(@RequestBody Challenge challenge, @PathVariable("id") Long id) {
 		final Challenge updatedChallenge = this.challengeService.update(challenge);
 		return new ResponseEntity<Challenge>(updatedChallenge, null, HttpStatus.OK);
 	}
@@ -52,7 +51,7 @@ public class ChallengeController {
 	
 	@DeleteMapping("/challenges/{id}")
 	@ResponseBody
-	public ResponseEntity<Void> delete(@PathParam("id") Integer id) {
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
 		this.challengeService.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
