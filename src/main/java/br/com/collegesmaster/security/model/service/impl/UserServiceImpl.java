@@ -50,9 +50,8 @@ public class UserServiceImpl implements UserService {
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@Transactional
 	@Override
-	public Boolean deleteById(final Integer id) {
+	public void deleteById(final Integer id) {
 		userRepository.deleteById(id);
-		return Boolean.TRUE;
 	}
 
 	@PreAuthorize("hasAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")

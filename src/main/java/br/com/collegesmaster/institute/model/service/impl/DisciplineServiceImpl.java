@@ -43,9 +43,8 @@ public class DisciplineServiceImpl implements DisciplineService {
 
 	@Transactional
 	@Override
-	public Boolean deleteById(final Integer id) {
+	public void deleteById(final Integer id) {
 		disciplineRepository.deleteById(id);
-		return Boolean.TRUE;
 	}
 	
 	@Transactional

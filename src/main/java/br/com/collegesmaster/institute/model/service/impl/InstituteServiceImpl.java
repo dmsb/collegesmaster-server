@@ -31,9 +31,8 @@ public class InstituteServiceImpl implements InstituteService {
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@Transactional
 	@Override
-	public Boolean deleteById(final Integer id) {
+	public void deleteById(final Integer id) {
 		instituteRepository.deleteById(id);
-		return Boolean.TRUE;
 	}
 	
 	@Transactional

@@ -29,27 +29,26 @@ public class InstituteController {
 	@GetMapping("/institutes")
 	public Iterable<InstituteImpl> list() {
 		logger.info("listing institutes");
-		return instituteService.findAll();
+		return this.instituteService.findAll();
 	}
 	
 	@PostMapping("/institutes/create")
 	public ResponseEntity<Institute> create(@RequestBody final InstituteImpl institute) {
-		final Institute insituteCreated = instituteService.create(institute);
+		final Institute insituteCreated = this.instituteService.create(institute);
 		final ResponseEntity<Institute> response = new ResponseEntity<>(insituteCreated, HttpStatus.OK);
 		return response;
 	}
 	
 	@PutMapping("/institutes/update/{id}")
 	public ResponseEntity<Institute> update(@RequestBody final InstituteImpl institute) {
-		final Institute insituteCreated = instituteService.update(institute);
+		final Institute insituteCreated = this.instituteService.update(institute);
 		final ResponseEntity<Institute> response = new ResponseEntity<>(insituteCreated, HttpStatus.OK);
 		return response;
 	}
 	
 	@DeleteMapping("/institutes/remove/{id}")
-	public ResponseEntity<Boolean> delete(@PathVariable final Integer id) {
-		final Boolean insituteCreated = instituteService.deleteById(id);
-		final ResponseEntity<Boolean> response = new ResponseEntity<>(insituteCreated, HttpStatus.OK);
-		return response;
+	public ResponseEntity<Void> delete(@PathVariable final Integer id) {
+		this.instituteService.deleteById(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }

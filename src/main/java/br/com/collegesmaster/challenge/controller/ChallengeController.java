@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -47,5 +48,12 @@ public class ChallengeController {
 	public ResponseEntity<Challenge> update(@RequestBody Challenge challenge) {
 		final Challenge createdChallenge = this.challengeService.create(challenge);
 		return new ResponseEntity<Challenge>(createdChallenge, null, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/challenges/{id}")
+	@ResponseBody
+	public ResponseEntity<Void> delete(@PathParam("id") Integer id) {
+		this.challengeService.deleteById(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }

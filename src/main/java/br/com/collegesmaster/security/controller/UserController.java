@@ -32,6 +32,6 @@ public class UserController {
 	
 	@PostMapping("/users/create")
 	public User create(final User user) {
-		return userService.create(user);
+		return this.userService.create(user);
 	}
 }

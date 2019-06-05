@@ -8,7 +8,7 @@ public interface GenericCRUD <T extends Model> {
 	
 	T update(T model);
 	
-	Boolean deleteById(Integer id);
+	void deleteById(Integer id);
 	
 	T findById(Integer id);
 	

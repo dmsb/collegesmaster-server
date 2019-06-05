@@ -60,7 +60,7 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	
 	@NotNull(message = "{CHALLENGE.discipline.notnull}")
 	@ManyToOne(targetEntity = DisciplineImpl.class, optional = false, fetch = EAGER)
-	@JoinColumn(name = "disciplineFK", referencedColumnName = "id", updatable = false,
+	@JoinColumn(name = "disciplineFK", referencedColumnName = "id",
 		foreignKey = @ForeignKey(name = "CHALLENGE_disciplineFK"))
 	private Discipline discipline;
 	

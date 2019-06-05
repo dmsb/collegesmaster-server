@@ -51,15 +51,10 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 	
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
-	@Transactional
+	@Transactional	
 	@Override
-	public Boolean deleteById(final Integer id) {
-		try {
-			this.challengeRepository.deleteById(id);
-			return Boolean.TRUE;
-		} catch (IllegalArgumentException e) {
-			return Boolean.FALSE;
-		}
+	public void deleteById(final Integer id) {
+		this.challengeRepository.deleteById(id);
 	}
 
 	@PreAuthorize("hasAnyAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")

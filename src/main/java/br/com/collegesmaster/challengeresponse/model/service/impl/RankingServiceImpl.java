@@ -35,9 +35,8 @@ public class RankingServiceImpl implements RankingService {
 	
 	@Transactional
 	@Override
-	public Boolean deleteById(final Integer id) {
+	public void deleteById(final Integer id) {
 		rankingRepository.deleteById(id);
-		return Boolean.TRUE;
 	}
 	
 	@Transactional
