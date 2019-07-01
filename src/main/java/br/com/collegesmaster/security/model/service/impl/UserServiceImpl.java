@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -88,7 +87,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public Collection<? extends GrantedAuthority> getLoggedUserAuthorities() {
-		return authenticationFacade.getAuthentication().getAuthorities();
+	public Collection<String> getLoggedUserRoles() {
+		User loggedUser = (User) this.authenticationFacade.getAuthentication().getPrincipal();
+		return loggedUser.getRoleNames();
 	}
 }

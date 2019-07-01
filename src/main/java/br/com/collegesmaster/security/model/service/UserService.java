@@ -2,7 +2,6 @@ package br.com.collegesmaster.security.model.service;
 
 import java.util.Collection;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import br.com.collegesmaster.generics.GenericCRUD;
@@ -20,5 +19,5 @@ public interface UserService extends GenericCRUD<User>, UserDetailsService {
 	
 	User findByUsername(String username);
 
-	Collection<? extends GrantedAuthority> getLoggedUserAuthorities();
+	Collection<String> getLoggedUserRoles();
 }

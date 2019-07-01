@@ -16,10 +16,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -34,15 +35,17 @@ import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
-import br.com.collegesmaster.institute.model.entity.Course;
-import br.com.collegesmaster.institute.model.entity.impl.CourseImpl;
+import br.com.collegesmaster.security.model.entity.Privilege;
+import br.com.collegesmaster.security.model.entity.Role;
 import br.com.collegesmaster.security.model.entity.User;
 import br.com.collegesmaster.security.model.service.impl.Password;
 
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name = "user",
 	uniqueConstraints = {
@@ -89,19 +92,14 @@ public class UserImpl extends ModelImpl implements User {
     @Column(name = "birthdate")
     private LocalDate birthdate;
     
-    @NotNull
-    @ManyToOne(targetEntity = CourseImpl.class, fetch = EAGER, optional = false)
-    @JoinColumn(name = "courseFK", referencedColumnName = "id", updatable = false,
-    	foreignKey = @ForeignKey(name = "USER_courseFK"))
-    private Course course;
-    
+    @JsonBackReference
     @NotEmpty
     @ManyToMany(fetch = EAGER)
     @JoinTable(name="user_has_roles",
 	    joinColumns = {@JoinColumn(name="userFK", referencedColumnName = "id")},
-	    foreignKey = @ForeignKey(name = "UR_userFK"),
+	    foreignKey = @ForeignKey(name = "USER_HAS_ROLES_userFK"),
 	    inverseJoinColumns = {@JoinColumn(name="roleFK", referencedColumnName = "id")},
-	    inverseForeignKey = @ForeignKey(name = "UR_roleFK"))
+	    inverseForeignKey = @ForeignKey(name = "USER_HAS_ROLES_roleFK"))
     private Collection<RoleImpl> roles;
     
     @PrePersist
@@ -201,17 +199,7 @@ public class UserImpl extends ModelImpl implements User {
 	public void setPassword(String password) {
         this.password = password;
     }
-
-	@Override
-	public Course getCourse() {
-		return course;
-	}
-
-	@Override
-	public void setCourse(Course course) {
-		this.course = course;
-	}
-	
+    
 	@Override
 	public Collection<RoleImpl> getRoles() {
 		return roles;
@@ -221,14 +209,19 @@ public class UserImpl extends ModelImpl implements User {
 	public void setRoles(Collection<RoleImpl> roles) {
 		this.roles = roles;
 	}
-	
+
 	@JsonIgnore
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-        for (final String role : this.getRoleNames()) {
-            authorities.add(new SimpleGrantedAuthority(role));
-        }
+		for(final Role currentRole : this.getRoles()) {
+			for(final Privilege currentPrivilege : currentRole.getPrivileges()) {
+				authorities.add(new SimpleGrantedAuthority(currentPrivilege.getName()));
+			}
+		}
+//        for (final String role : this.getRoleNames()) {
+//            authorities.add(new SimpleGrantedAuthority(role));
+//        }
         return authorities;
 	}
 

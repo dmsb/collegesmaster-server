@@ -60,12 +60,12 @@ public class DisciplineServiceImpl implements DisciplineService {
 	}
 	
 	@Override
-	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
+	@PreAuthorize("hasAnyAuthority('READ_DISCIPLINE' )")
 	@Transactional(readOnly = true)
 	public Iterable<DisciplineImpl> findByPredicate(final Predicate predicate, final Sort sort) {
 		final String loggedUsername = authenticationFacade.getAuthentication().getName();
 		final BooleanBuilder booleanBuilderQuery = new BooleanBuilder(predicate);
-		booleanBuilderQuery.and(QDisciplineImpl.disciplineImpl.relatedUsersInSemeter.any().username.eq(loggedUsername));
+		booleanBuilderQuery.and(QDisciplineImpl.disciplineImpl.professors.any().username.eq(loggedUsername));
 		return this.disciplineRepository.findAll(booleanBuilderQuery.getValue(), sort);
 	}
 }

@@ -34,14 +34,14 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@Autowired
 	private QuestionService questionService;
 	
-	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('CREATE_CHALLENGE')")
 	@Transactional
 	@Override
 	public Challenge create(final Challenge challenge) {
 		return challengeRepository.save((ChallengeImpl)challenge);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('UPDATE_CHALLENGE')")
 	@Transactional
 	@Override
 	public Challenge update(final Challenge challenge) {
@@ -50,14 +50,14 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return challengeRepository.save((ChallengeImpl)challenge);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR','PROFESSOR')")
+	@PreAuthorize("hasAnyAuthority('DELETE_CHALLENGE')")
 	@Transactional	
 	@Override
 	public void deleteById(final Integer id) {
 		this.challengeRepository.deleteById(id);
 	}
 
-	@PreAuthorize("hasAnyAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('READ_CHALLENGE')")
 	@Transactional(readOnly = true)
 	public Challenge findById(Integer id) {
 		return this.challengeRepository
@@ -65,14 +65,14 @@ public class ChallengeServiceImpl implements ChallengeService {
 					.orElse(null);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('READ_CHALLENGE')")
 	@Transactional(readOnly = true)
 	@Override
 	public List<Challenge> findByUser(final User user) {
 		return this.challengeRepository.findByOwner(user);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
+	@PreAuthorize("hasAnyAuthority('READ_CHALLENGE')")
 	@Transactional(readOnly = true)
 	@Override
 	public Iterable<ChallengeImpl> findByPredicate(final Predicate predicate) {
@@ -83,7 +83,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return this.challengeRepository.findAll(booleanBuilderQuery.getValue());
 	}
 
-	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'PROFESSOR' )")
+	@PreAuthorize("hasAnyAuthority('READ_CHALLENGE')")
 	@Transactional(readOnly = true)
 	@Override
 	public Page<ChallengeImpl> findByPredicate(Predicate predicate, Pageable pageable) {

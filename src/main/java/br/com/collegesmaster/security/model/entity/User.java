@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import br.com.collegesmaster.generics.model.Model;
-import br.com.collegesmaster.institute.model.entity.Course;
 import br.com.collegesmaster.security.model.entity.impl.RoleImpl;
 import br.com.collegesmaster.security.model.entity.impl.UserImpl;
 
@@ -23,10 +22,6 @@ public interface User extends Model, UserDetails {
 	void setRoles(Collection<RoleImpl> roles);
 
 	Collection<RoleImpl> getRoles();
-
-	Course getCourse();
-
-	void setCourse(Course course);
 	
 	String getCpf();
 

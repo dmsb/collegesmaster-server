@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import br.com.collegesmaster.generics.model.Model;
 import br.com.collegesmaster.institute.model.entity.impl.DisciplineImpl;
-import br.com.collegesmaster.security.model.entity.impl.UserImpl;
+import br.com.collegesmaster.security.model.entity.impl.ProfessorImpl;
+import br.com.collegesmaster.security.model.entity.impl.StudentImpl;
 
 @JsonDeserialize(as = DisciplineImpl.class)
 public interface Discipline extends Model {
@@ -19,8 +20,12 @@ public interface Discipline extends Model {
 
 	void setName(String name);
 
-	void setRelatedUsersInSemeter(Collection<UserImpl> relatedUsersInSemeter);
+	void setStudents(Collection<StudentImpl> students);
 
-	Collection<UserImpl> getRelatedUsersInSemeter();
+	Collection<StudentImpl> getStudents();
+
+	void setProfessors(Collection<ProfessorImpl> professor);
+
+	Collection<ProfessorImpl> getProfessors();
 
 }

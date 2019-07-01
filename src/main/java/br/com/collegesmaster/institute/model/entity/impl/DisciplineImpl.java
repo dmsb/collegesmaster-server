@@ -23,7 +23,8 @@ import org.hibernate.envers.Audited;
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
 import br.com.collegesmaster.institute.model.entity.Course;
 import br.com.collegesmaster.institute.model.entity.Discipline;
-import br.com.collegesmaster.security.model.entity.impl.UserImpl;
+import br.com.collegesmaster.security.model.entity.impl.ProfessorImpl;
+import br.com.collegesmaster.security.model.entity.impl.StudentImpl;
 
 @Entity
 @Table(name = "discipline")
@@ -44,12 +45,20 @@ public class DisciplineImpl extends ModelImpl implements Discipline {
     private Course course;
 	
     @ManyToMany(fetch = LAZY)
-    @JoinTable(name="discipline_has_related_users",
+    @JoinTable(name="discipline_has_students",
 	    joinColumns = {@JoinColumn(name="disciplineFK", referencedColumnName = "id")},
-	    foreignKey = @ForeignKey(name = "UR_disciplineFK"),
-	    inverseJoinColumns = {@JoinColumn(name="reletedUserFK", referencedColumnName = "id")},
-	    inverseForeignKey = @ForeignKey(name = "UR_reletedUserFK"))
-    private Collection<UserImpl> relatedUsersInSemeter;
+	    foreignKey = @ForeignKey(name = "DISCIPLINE_HAS_STUDENTS_disciplineFK"),
+	    inverseJoinColumns = {@JoinColumn(name="studentFK", referencedColumnName = "id")},
+	    inverseForeignKey = @ForeignKey(name = "DISCIPLINE_HAS_STUDENTS_studentFK"))
+    private Collection<StudentImpl> students;
+    
+    @ManyToMany(fetch = LAZY)
+    @JoinTable(name="discipline_has_professors",
+	    joinColumns = {@JoinColumn(name="disciplineFK", referencedColumnName = "id")},
+	    foreignKey = @ForeignKey(name = "DISCIPLINE_HAS_PROFESSORS_disciplineFK"),
+	    inverseJoinColumns = {@JoinColumn(name="professorFK", referencedColumnName = "id")},
+	    inverseForeignKey = @ForeignKey(name = "DISCIPLINE_HAS_PROFESSORS_professorFK"))
+    private Collection<ProfessorImpl> professors;
 
 	public DisciplineImpl() {
     	
@@ -80,15 +89,25 @@ public class DisciplineImpl extends ModelImpl implements Discipline {
 	public void setName(String name) {
         this.name = name;
     }
-	
-    @Override
-	public Collection<UserImpl> getRelatedUsersInSemeter() {
-		return relatedUsersInSemeter;
+
+	@Override
+	public Collection<StudentImpl> getStudents() {
+		return students;
 	}
 
 	@Override
-	public void setRelatedUsersInSemeter(Collection<UserImpl> relatedUsersInSemeter) {
-		this.relatedUsersInSemeter = relatedUsersInSemeter;
+	public void setStudents(Collection<StudentImpl> students) {
+		this.students = students;
+	}
+
+	@Override
+	public Collection<ProfessorImpl> getProfessors() {
+		return professors;
+	}
+
+	@Override
+	public void setProfessors(Collection<ProfessorImpl> professors) {
+		this.professors = professors;
 	}
 
 	@Override

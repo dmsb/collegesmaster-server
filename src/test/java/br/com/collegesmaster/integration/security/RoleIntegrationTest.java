@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.collegesmaster.integration.IntegrationTestConfiguration;
+import br.com.collegesmaster.security.model.entity.Role;
 import br.com.collegesmaster.security.model.entity.impl.RoleImpl;
 
 @RunWith(SpringRunner.class)
@@ -38,7 +39,7 @@ public class RoleIntegrationTest extends IntegrationTestConfiguration {
 	public void test_002_givenRoleAndToken_whenCreateRole_thenReturnRole()
 	  throws Exception {
 		
-		final RoleImpl role = new RoleImpl();
+		final Role role = new RoleImpl();
 		role.setName("TEST");
 		
 		final ObjectMapper mapper = new ObjectMapper();

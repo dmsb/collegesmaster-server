@@ -41,34 +41,87 @@
 	<!-- password = secret -->
 	<user username='diogo.brito'
 		password='$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6'
-		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' courseFK='1'
+		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00'
 		birthdate='1993-10-17 00:00:00' cpf='10719498457' email='diogomsb1@gmail.com' firstname='Diogo' lastname='Brito' />
 
 	<user username='tainara.dantas'
 		password='$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6'
-		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' courseFK='2'
+		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00'
 		birthdate='1998-10-17 00:00:00' cpf='42518426507' email='tainaramsb1@gmail.com' firstname='Tainara' lastname='Dantas' />
 
 	<user username='fernando.ribeiro'
 		password='$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6'
-		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' courseFK='3'
+		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00'
 		birthdate='1998-10-17 00:00:00' cpf='44046156201' email='transoc@gmail.com' firstname='Fernando' lastname='Ribeiro' />
 
 	<user username='lucas.muniz'
 		password='$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6'
-		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' courseFK='4'
-		birthdate='1998-10-17 00:00:00' cpf='34796683305' email='juca1@gmail.com' firstname='Lucas' lastname='Muniz' />	
+		version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00'
+		birthdate='1998-10-17 00:00:00' cpf='34796683305' email='juca1@gmail.com' firstname='Lucas' lastname='Muniz'/>
+		
+	<professor id='1' />
+
+	<student id='2' level='1' levelDesignation='APREDIZ_DE_MAGIA' courseFK='1' />
+
+	<professor id='3' />
+
+	<student id='4' level='1' levelDesignation='APREDIZ_DE_MAGIA' courseFK='2' />
 	
-	<discipline_has_related_users reletedUserFK='1' disciplineFK='1' />
-	<discipline_has_related_users reletedUserFK='1' disciplineFK='2' />
-	<discipline_has_related_users reletedUserFK='2' disciplineFK='1' />
-	<discipline_has_related_users reletedUserFK='3' disciplineFK='3' />
-	<discipline_has_related_users reletedUserFK='4' disciplineFK='2' />
+	<discipline_has_professors professorFK='1' disciplineFK='1' />
+	<discipline_has_professors professorFK='1' disciplineFK='2' />
+	<discipline_has_professors professorFK='3' disciplineFK='3' />
+	
+	<discipline_has_students studentFK='2' disciplineFK='1' />
+	<discipline_has_students studentFK='2' disciplineFK='2' />
+	<discipline_has_students studentFK='4' disciplineFK='3' />
+	<discipline_has_students studentFK='4' disciplineFK='4' />
 	
 	<role name='PROFESSOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<role name='STUDENT' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<role name='MONITOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<role name='ADMINISTRATOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<privilege name='CREATE_CHALLENGE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='UPDATE_CHALLENGE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='DELETE_CHALLENGE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='READ_CHALLENGE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<privilege name='CREATE_CHALLENGE_RESPONSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='UPDATE_CHALLENGE_RESPONSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='DELETE_CHALLENGE_RESPONSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='READ_CHALLENGE_RESPONSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<privilege name='READ_DISCIPLINE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	
+	<role_has_privileges roleFK='1' privilegeFK='1' />
+	<role_has_privileges roleFK='1' privilegeFK='2' />
+	<role_has_privileges roleFK='1' privilegeFK='3' />
+	<role_has_privileges roleFK='1' privilegeFK='4' />
+	<role_has_privileges roleFK='1' privilegeFK='8' />
+	<role_has_privileges roleFK='1' privilegeFK='9' />
+	
+	<role_has_privileges roleFK='2' privilegeFK='5' />
+	<role_has_privileges roleFK='2' privilegeFK='6' />
+	<role_has_privileges roleFK='2' privilegeFK='7' />
+	<role_has_privileges roleFK='2' privilegeFK='8' />
+	<role_has_privileges roleFK='2' privilegeFK='9' />
+	
+	<role_has_privileges roleFK='3' privilegeFK='5' />
+	<role_has_privileges roleFK='3' privilegeFK='6' />
+	<role_has_privileges roleFK='3' privilegeFK='7' />
+	<role_has_privileges roleFK='3' privilegeFK='8' />
+	<role_has_privileges roleFK='3' privilegeFK='9' />
+	
+	<role_has_privileges roleFK='4' privilegeFK='1' />
+	<role_has_privileges roleFK='4' privilegeFK='2' />
+	<role_has_privileges roleFK='4' privilegeFK='3' />
+	<role_has_privileges roleFK='4' privilegeFK='4' />
+	<role_has_privileges roleFK='4' privilegeFK='5' />
+	<role_has_privileges roleFK='4' privilegeFK='6' />
+	<role_has_privileges roleFK='4' privilegeFK='7' />
+	<role_has_privileges roleFK='4' privilegeFK='8' />
+	<role_has_privileges roleFK='4' privilegeFK='9' />
 	
 	<user_has_roles userFK='1' roleFK='1' />
 	<user_has_roles userFK='2' roleFK='1' />

@@ -25,7 +25,7 @@ public class ChallengeResponseServiceImpl implements ChallengeResponseService {
 	@Autowired
 	private RankingService rankingBusiness;
 	
-	@PreAuthorize("hasAnyAuthority('STUDENT', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAnyAuthority('CREATE_CHALLENGE_RESPONSE')")
 	@Transactional
 	@Override
 	public ChallengeResponse create(final ChallengeResponse response) {
@@ -41,21 +41,21 @@ public class ChallengeResponseServiceImpl implements ChallengeResponseService {
 		return null;
 	}
 	
-	@PreAuthorize("hasAuthority('STUDENT', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('UPDATE_CHALLENGE_RESPONSE')")
 	@Transactional
 	@Override
 	public ChallengeResponse update(final ChallengeResponse response) {
 		return challengeResponseRepository.save((ChallengeResponseImpl)response);
 	}
 	
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('DELETE_CHALLENGE_RESPONSE')")
 	@Transactional
 	@Override
 	public void deleteById(final Integer id) {
 		challengeResponseRepository.deleteById(id);
 	}
 	
-	@PreAuthorize("hasAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('READ_CHALLENGE_RESPONSE')")
 	@Transactional
 	@Override
 	public ChallengeResponse findById(final Integer id) {
@@ -64,7 +64,7 @@ public class ChallengeResponseServiceImpl implements ChallengeResponseService {
 					.orElse(null);
 	}
 	
-	@PreAuthorize("hasAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('READ_CHALLENGE_RESPONSE')")
 	@Transactional
 	@Override
 	public List<ChallengeResponse> findByUser(final User user) {
@@ -72,7 +72,7 @@ public class ChallengeResponseServiceImpl implements ChallengeResponseService {
 		
 	}
 	
-	@PreAuthorize("hasAuthority('PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('READ_CHALLENGE_RESPONSE')")
 	@Transactional
 	@Override
 	public List<ChallengeResponse> findByChallenge(Challenge selectedChallenge) {

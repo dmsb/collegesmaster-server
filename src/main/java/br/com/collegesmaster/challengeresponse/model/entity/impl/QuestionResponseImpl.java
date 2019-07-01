@@ -36,21 +36,21 @@ public class QuestionResponseImpl extends ModelImpl implements QuestionResponse 
 	@NotNull
 	@ManyToOne(targetEntity = ChallengeResponseImpl.class, optional = false, fetch = LAZY)
 	@JoinColumn(name = "challengeResponseFK", referencedColumnName = "id", updatable = false,
-		foreignKey = @ForeignKey(name = "QR_challengeResponseFK"))
+		foreignKey = @ForeignKey(name = "QUESTION_RESPONSE_challengeResponseFK"))
 	private ChallengeResponse challengeResponse;
 	
 	@NotNull
 	@ManyToOne(targetEntity = QuestionImpl.class, fetch = LAZY, optional = false)
 	@JoinColumn(name = "targetQuestionFK", referencedColumnName = "id", updatable = false,
-		foreignKey = @ForeignKey(name = "QR_targetQuestionFK"))
+		foreignKey = @ForeignKey(name = "QUESTION_RESPONSE_targetQuestionFK"))
 	private Question targetQuestion;
 	
 	@ManyToMany(fetch = LAZY)
-	@JoinTable(name="question_response_has_selected_alternatives",
+	@JoinTable(name="question_response_has_alternatives",
 	    joinColumns = {@JoinColumn(name="questionResponseFK", referencedColumnName = "id")},
-	    foreignKey = @ForeignKey(name = "UR_questionResponseFK"),
+	    foreignKey = @ForeignKey(name = "QUESTION_RESPONSE_HAS_ALTERNATIVES_questionResponseFK"),
 	    inverseJoinColumns = {@JoinColumn(name="selectedAlternativeFK", referencedColumnName = "id")},
-	    inverseForeignKey = @ForeignKey(name = "UR_selectedAlternativeFK"))
+	    inverseForeignKey = @ForeignKey(name = "QUESTION_RESPONSE_HAS_ALTERNATIVES_selectedAlternativeFK"))
 	private Collection<AlternativeImpl> selectedAlternatives;
 	
 	@Override
