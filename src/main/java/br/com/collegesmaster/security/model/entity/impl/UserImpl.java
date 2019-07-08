@@ -35,7 +35,6 @@ import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -92,7 +91,6 @@ public class UserImpl extends ModelImpl implements User {
     @Column(name = "birthdate")
     private LocalDate birthdate;
     
-    @JsonBackReference
     @NotEmpty
     @ManyToMany(fetch = EAGER)
     @JoinTable(name="user_has_roles",

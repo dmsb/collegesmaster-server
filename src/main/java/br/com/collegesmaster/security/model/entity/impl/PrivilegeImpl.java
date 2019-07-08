@@ -1,6 +1,7 @@
 package br.com.collegesmaster.security.model.entity.impl;
 
 import static javax.persistence.AccessType.FIELD;
+import static javax.persistence.FetchType.LAZY;
 
 import java.util.Collection;
 
@@ -14,7 +15,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.envers.Audited;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
 import br.com.collegesmaster.security.model.entity.Privilege;
@@ -32,8 +32,7 @@ public class PrivilegeImpl extends ModelImpl implements Privilege {
 	@Column(name = "name", nullable = false, unique = true, length = 50)
 	private String name;
 	
-	@JsonManagedReference
-    @ManyToMany(mappedBy = "privileges")
+    @ManyToMany(mappedBy = "privileges", fetch = LAZY)
     private Collection<RoleImpl> roles;
     
 	@Override

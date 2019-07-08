@@ -28,7 +28,7 @@ public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	private AuthenticationFacade authenticationFacade;
 
-	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR', 'STUDENT')")
+	@PreAuthorize("hasAnyAuthority('READ_QUESTION')")
 	@Transactional
 	@Override
 	public Page<QuestionImpl> findQuestions(Predicate predicate, Pageable pageable) {
@@ -39,7 +39,7 @@ public class QuestionServiceImpl implements QuestionService {
 		return this.questionRepository.findAll(booleanBuilderQuery.getValue(), pageable);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('PROFESSOR', 'ADMINISTRATOR', 'STUDENT')")
+	@PreAuthorize("hasAuthority('CREATE_QUESTION', 'UPDATE_QUESTION')")
 	@Transactional
 	@Override
 	public List<QuestionImpl> saveAll(Collection<QuestionImpl> questions) {

@@ -19,31 +19,35 @@ public class CourseServiceImpl implements CourseService {
 	@Autowired
 	private CourseRepository courseRepository;	
 	
+	@PreAuthorize("hasAuthority('CREATE_COURSE')")
 	@Transactional
 	@Override
 	public Course create(Course course) {
 		return courseRepository.save((CourseImpl)course);
 	}
-
+	
+	@PreAuthorize("hasAuthority('UPDATE_COURSE')")
 	@Transactional
 	@Override
 	public Course update(Course course) {
 		return courseRepository.save((CourseImpl)course);
 	}
 
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('DELETE_COURSE')")
 	@Transactional
 	@Override
 	public void deleteById(final Integer id) {
 		courseRepository.deleteById(id);
 	}
 
+	@PreAuthorize("hasAuthority('READ_COURSE')")
 	@Transactional
 	@Override
 	public Course findById(Integer id) {
 		return courseRepository.findById(id).orElse(null);
 	}
 	
+	@PreAuthorize("hasAuthority('READ_COURSE')")
 	@Transactional
 	@Override
 	public List<Course> findByInstitute(final Institute institute) {

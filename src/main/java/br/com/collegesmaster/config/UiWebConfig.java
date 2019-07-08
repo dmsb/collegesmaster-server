@@ -63,11 +63,13 @@ public class UiWebConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-	    ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json()
+	    final ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json()
 	    		.modules(new JavaTimeModule(), new Jdk8Module())
 	    		.build()
-	            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+	            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);	 
+	    
 	    converters.add(new MappingJackson2HttpMessageConverter(objectMapper));
+	    
 	}
 	
 	@Override

@@ -25,7 +25,7 @@ import br.com.collegesmaster.security.model.entity.enums.StudentLevelDesignation
 
 @Entity
 @Table(name = "student")
-@PrimaryKeyJoinColumn(name="id")
+@PrimaryKeyJoinColumn(name="id", foreignKey = @ForeignKey(name = "STUDENT_userFK"))
 @Audited
 @Access(FIELD)
 public class StudentImpl extends UserImpl implements Student {

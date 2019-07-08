@@ -1,6 +1,7 @@
 	package br.com.collegesmaster.security.model.entity.impl;
 
 import static javax.persistence.AccessType.FIELD;
+import static javax.persistence.FetchType.EAGER;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -8,7 +9,6 @@ import java.util.Objects;
 import javax.persistence.Access;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,9 +18,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
 import br.com.collegesmaster.security.model.entity.Role;
@@ -38,12 +37,11 @@ public class RoleImpl extends ModelImpl implements Role {
 	@Column(name = "name", nullable = false, unique = true, length = 20)
 	private String name;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@ManyToMany(mappedBy = "roles")
     private Collection<UserImpl> users;
 	
-	@JsonBackReference
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = EAGER)
     @JoinTable(
         name = "role_has_privileges", 
 		joinColumns = {@JoinColumn(name="roleFK", referencedColumnName = "id")},

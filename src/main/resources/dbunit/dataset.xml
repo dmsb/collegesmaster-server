@@ -93,25 +93,41 @@
 	
 	<privilege name='READ_DISCIPLINE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
+	<privilege name='UPDATE_USER' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='DELETE_USER' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='CREATE_USER' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
+	<privilege name='READ_COURSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='CREATE_COURSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='UPDATE_COURSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='DELETE_COURSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<privilege name='READ_INSTITUTE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='CREATE_INSTITUTE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='UPDATE_INSTITUTE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='DELETE_INSTITUTE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+
 	<role_has_privileges roleFK='1' privilegeFK='1' />
 	<role_has_privileges roleFK='1' privilegeFK='2' />
 	<role_has_privileges roleFK='1' privilegeFK='3' />
 	<role_has_privileges roleFK='1' privilegeFK='4' />
 	<role_has_privileges roleFK='1' privilegeFK='8' />
 	<role_has_privileges roleFK='1' privilegeFK='9' />
+	<role_has_privileges roleFK='1' privilegeFK='10' />
 	
 	<role_has_privileges roleFK='2' privilegeFK='5' />
 	<role_has_privileges roleFK='2' privilegeFK='6' />
 	<role_has_privileges roleFK='2' privilegeFK='7' />
 	<role_has_privileges roleFK='2' privilegeFK='8' />
 	<role_has_privileges roleFK='2' privilegeFK='9' />
+	<role_has_privileges roleFK='2' privilegeFK='10' />
 	
 	<role_has_privileges roleFK='3' privilegeFK='5' />
 	<role_has_privileges roleFK='3' privilegeFK='6' />
 	<role_has_privileges roleFK='3' privilegeFK='7' />
 	<role_has_privileges roleFK='3' privilegeFK='8' />
 	<role_has_privileges roleFK='3' privilegeFK='9' />
+	<role_has_privileges roleFK='3' privilegeFK='10' />
 	
 	<role_has_privileges roleFK='4' privilegeFK='1' />
 	<role_has_privileges roleFK='4' privilegeFK='2' />
@@ -122,6 +138,17 @@
 	<role_has_privileges roleFK='4' privilegeFK='7' />
 	<role_has_privileges roleFK='4' privilegeFK='8' />
 	<role_has_privileges roleFK='4' privilegeFK='9' />
+	<role_has_privileges roleFK='4' privilegeFK='10' />
+	<role_has_privileges roleFK='4' privilegeFK='11' />
+	<role_has_privileges roleFK='4' privilegeFK='12' />
+	<role_has_privileges roleFK='4' privilegeFK='13' />
+	<role_has_privileges roleFK='4' privilegeFK='14' />
+	<role_has_privileges roleFK='4' privilegeFK='15' />
+	<role_has_privileges roleFK='4' privilegeFK='16' />
+	<role_has_privileges roleFK='4' privilegeFK='17' />
+	<role_has_privileges roleFK='4' privilegeFK='18' />
+	<role_has_privileges roleFK='4' privilegeFK='19' />
+	<role_has_privileges roleFK='4' privilegeFK='20' />
 	
 	<user_has_roles userFK='1' roleFK='1' />
 	<user_has_roles userFK='2' roleFK='1' />

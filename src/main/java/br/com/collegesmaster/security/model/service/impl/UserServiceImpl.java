@@ -33,20 +33,21 @@ public class UserServiceImpl implements UserService {
         return user;
 	}
 	
+	@PreAuthorize("hasAuthority('CREATE_USER')")
 	@Transactional
 	@Override
 	public User create(final User user) {
 		return userRepository.save((UserImpl) user);
 	}
 
-	@PreAuthorize("hasAuthority('STUDENT', 'PROFESSOR', 'ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('UPDATE_USER')")
 	@Transactional
 	@Override
 	public User update(final User user) {
 		return userRepository.save((UserImpl) user);
 	}
 
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('DELETE_USER')")
 	@Transactional
 	@Override
 	public void deleteById(final Integer id) {
