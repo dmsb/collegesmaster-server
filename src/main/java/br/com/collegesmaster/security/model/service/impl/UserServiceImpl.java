@@ -1,7 +1,5 @@
 package br.com.collegesmaster.security.model.service.impl;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -88,8 +86,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public Collection<String> getLoggedUserRoles() {
-		User loggedUser = (User) this.authenticationFacade.getAuthentication().getPrincipal();
-		return loggedUser.getRoleNames();
+	public <T extends User> T getLoggedUser() {
+		@SuppressWarnings("unchecked")
+		T loggedUser = (T) this.authenticationFacade.getAuthentication().getPrincipal();
+		return loggedUser;
 	}
 }

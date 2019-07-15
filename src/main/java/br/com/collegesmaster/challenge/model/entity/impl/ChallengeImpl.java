@@ -35,8 +35,8 @@ import br.com.collegesmaster.generics.entitylisteners.OwnerListener;
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
 import br.com.collegesmaster.institute.model.entity.Discipline;
 import br.com.collegesmaster.institute.model.entity.impl.DisciplineImpl;
-import br.com.collegesmaster.security.model.entity.User;
-import br.com.collegesmaster.security.model.entity.impl.UserImpl;
+import br.com.collegesmaster.security.model.entity.Professor;
+import br.com.collegesmaster.security.model.entity.impl.ProfessorImpl;
 
 @Entity
 @Table(name = "challenge")
@@ -53,10 +53,10 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	private String title;
 	
 	@NotNull(message = "{CHALLENGE.owner.notnull}")
-	@ManyToOne(targetEntity = UserImpl.class, optional = false, fetch = EAGER)
-	@JoinColumn(name = "userFK", referencedColumnName = "id", updatable = false,
-		foreignKey = @ForeignKey(name = "CHALLENGE_userFK"))
-	private User owner;
+	@ManyToOne(targetEntity = ProfessorImpl.class, optional = false, fetch = EAGER)
+	@JoinColumn(name = "professorFK", referencedColumnName = "id", updatable = false,
+		foreignKey = @ForeignKey(name = "CHALLENGE_professorFK"))
+	private Professor owner;
 	
 	@NotNull(message = "{CHALLENGE.discipline.notnull}")
 	@ManyToOne(targetEntity = DisciplineImpl.class, optional = false, fetch = EAGER)
@@ -88,12 +88,12 @@ public class ChallengeImpl extends ModelImpl implements Challenge {
 	private ChallengeType challengeType;
 	
 	@Override
-	public User getOwner() {
+	public Professor getOwner() {
 		return owner;
 	}
 	
 	@Override
-	public void setOwner(User owner) {
+	public void setOwner(Professor owner) {
 		this.owner = owner;
 	}
 	

@@ -122,8 +122,7 @@ public class UserImpl extends ModelImpl implements User {
     	return roleNames.stream().anyMatch(userRoleNames::contains);
     }
 
-	@Override
-	public List<String> getRoleNames() {
+	private List<String> getRoleNames() {
 		return getRoles().stream().map(role -> {return role.getName();})
     		.collect(Collectors.toList());
 	}

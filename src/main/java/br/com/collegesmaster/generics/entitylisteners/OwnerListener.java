@@ -10,8 +10,11 @@ import br.com.collegesmaster.security.model.entity.User;
 public class OwnerListener {
 
     @PrePersist
-    public void setRegisterOwner(Owner registerOwner) {
-    	User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public <T extends User> void setRegisterOwner(Owner<T> registerOwner) {
+    	
+    	@SuppressWarnings("unchecked")
+		T loggedUser = (T) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	
     	registerOwner.setOwner(loggedUser);
     }
     

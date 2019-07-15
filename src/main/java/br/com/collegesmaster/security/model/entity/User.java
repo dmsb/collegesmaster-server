@@ -43,8 +43,6 @@ public interface User extends Model, UserDetails {
 
 	void setBirthdate(LocalDate birthdate);
 
-	List<String> getRoleNames();
-
 	Boolean isUserInRole(final String roleName);
 
 	void parseCpfToCrude();

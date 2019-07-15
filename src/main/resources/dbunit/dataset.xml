@@ -151,7 +151,7 @@
 	<role_has_privileges roleFK='4' privilegeFK='20' />
 	
 	<user_has_roles userFK='1' roleFK='1' />
-	<user_has_roles userFK='2' roleFK='1' />
+	<user_has_roles userFK='2' roleFK='2' />
 	<user_has_roles userFK='3' roleFK='3' />
 	<user_has_roles userFK='4' roleFK='2' />
 
@@ -171,12 +171,12 @@
 	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='12' userFK='4' />
 	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='13' userFK='4' />
 	 
-	<challenge title='Challenge 1' disciplineFK='4' userFK='1' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 2' disciplineFK='1' userFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 3' disciplineFK='2' userFK='2' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 4' disciplineFK='2' userFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 5' disciplineFK='2' userFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 6' disciplineFK='1' userFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 1' disciplineFK='4' professorFK='1' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 2' disciplineFK='1' professorFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 3' disciplineFK='2' professorFK='1' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 4' disciplineFK='2' professorFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 5' disciplineFK='2' professorFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<challenge title='Challenge 6' disciplineFK='1' professorFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 
 	<question description='Question about Internet Protocols' score='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<question description='Question about Math' score='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />

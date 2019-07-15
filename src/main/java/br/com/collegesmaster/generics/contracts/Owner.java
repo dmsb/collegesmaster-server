@@ -2,9 +2,9 @@ package br.com.collegesmaster.generics.contracts;
 
 import br.com.collegesmaster.security.model.entity.User;
 
-public interface Owner {
+public interface Owner <T extends User> {
 
-	User getOwner();
+	T getOwner();
 	
-	void setOwner(User owner);
+	void setOwner(T owner);
 }
