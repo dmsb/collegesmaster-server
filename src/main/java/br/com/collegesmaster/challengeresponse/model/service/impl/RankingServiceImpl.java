@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.collegesmaster.challengeresponse.model.entity.ChallengeResponse;
+import br.com.collegesmaster.challengeresponse.model.entity.AnswerBook;
 import br.com.collegesmaster.challengeresponse.model.entity.Ranking;
 import br.com.collegesmaster.challengeresponse.model.entity.impl.RankingImpl;
 import br.com.collegesmaster.challengeresponse.model.repository.RankingRepository;
@@ -47,18 +47,18 @@ public class RankingServiceImpl implements RankingService {
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
-	public void addScoreToUser(final ChallengeResponse challengeResponse) {
-		if(challengeResponse != null && challengeResponse.getUser() != null) {
+	public void addScoreToUser(final AnswerBook answerBook) {
+		if(answerBook != null && answerBook.getOwner() != null) {
 			final Ranking userRankingInPeriod = this.findByUserAndDiscipline(
-					challengeResponse.getUser(),
-					challengeResponse.getChallenge().getDiscipline());
+					answerBook.getOwner(),
+					answerBook.getChallenge().getDiscipline());
 			if(userRankingInPeriod != null) {
-				final Integer currentPontuation = addStudentPontuation(challengeResponse.getScore(), 
+				final Integer currentPontuation = addStudentPontuation(answerBook.getScore(), 
 						userRankingInPeriod.getScore());
 				userRankingInPeriod.setScore(currentPontuation);
 				this.update(userRankingInPeriod);
 			} else {
-				final RankingImpl newUserRanking = buildANewRanking(challengeResponse);
+				final RankingImpl newUserRanking = buildANewRanking(answerBook);
 				this.create(newUserRanking);
 			}
 		}
@@ -69,11 +69,11 @@ public class RankingServiceImpl implements RankingService {
 		return currentScore + currentChallengeResponseScore;
 	}
 
-	private RankingImpl buildANewRanking(final ChallengeResponse challengeResponse) {
+	private RankingImpl buildANewRanking(final AnswerBook answerBook) {
 		final RankingImpl newUserRanking = new RankingImpl();
-		newUserRanking.setDiscipline(challengeResponse.getChallenge().getDiscipline());
-		newUserRanking.setScore(challengeResponse.getScore());
-		newUserRanking.setUser(challengeResponse.getUser());
+		newUserRanking.setDiscipline(answerBook.getChallenge().getDiscipline());
+		newUserRanking.setScore(answerBook.getScore());
+		newUserRanking.setUser(answerBook.getOwner());
 		return newUserRanking;
 	}
 	

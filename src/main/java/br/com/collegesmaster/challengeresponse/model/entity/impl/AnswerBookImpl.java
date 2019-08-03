@@ -29,18 +29,18 @@ import br.com.collegesmaster.challenge.model.entity.Alternative;
 import br.com.collegesmaster.challenge.model.entity.Challenge;
 import br.com.collegesmaster.challenge.model.entity.impl.AlternativeImpl;
 import br.com.collegesmaster.challenge.model.entity.impl.ChallengeImpl;
-import br.com.collegesmaster.challengeresponse.model.entity.ChallengeResponse;
-import br.com.collegesmaster.challengeresponse.model.entity.QuestionResponse;
+import br.com.collegesmaster.challengeresponse.model.entity.AnswerBook;
+import br.com.collegesmaster.challengeresponse.model.entity.QuestionOfAnswerBook;
 import br.com.collegesmaster.generics.model.impl.ModelImpl;
-import br.com.collegesmaster.security.model.entity.User;
+import br.com.collegesmaster.security.model.entity.Student;
 import br.com.collegesmaster.security.model.entity.impl.UserImpl;
 
 @Entity
-@Table(name = "challenge_response",
+@Table(name = "answer_book",
 	uniqueConstraints = @UniqueConstraint(columnNames = {"challengeFK", "userFK"},  name = "UK_CHALLENGE_USER"))
 @Access(FIELD)
 @Audited
-public class ChallengeResponseImpl extends ModelImpl implements ChallengeResponse {
+public class AnswerBookImpl extends ModelImpl implements AnswerBook {
 
 	private static final long serialVersionUID = -4223636598786128623L;
 	
@@ -54,7 +54,7 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	@ManyToOne(targetEntity = UserImpl.class, optional = false, fetch = LAZY)
 	@JoinColumn(name = "userFK", referencedColumnName = "id", updatable = false, nullable = false,
 		foreignKey = @ForeignKey(name = "CR_userFK"))
-	private User user;
+	private Student owner;
 	
 	@NotNull
 	@Column(name = "score", nullable = false, length = 11)
@@ -62,19 +62,19 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	
 	@NotEmpty
 	@NotAudited
-	@OneToMany(cascade = ALL, fetch = LAZY, orphanRemoval = true, mappedBy = "challengeResponse")
-	private Collection<QuestionResponseImpl> questionsResponse;
+	@OneToMany(cascade = ALL, fetch = LAZY, orphanRemoval = true, mappedBy = "answerBook")
+	private Collection<QuestionOfAnswerBookImpl> questionsOfAnswerBook;
 	
 	@Override
 	@PrePersist
 	@PreUpdate
 	public void calculateScore() {
 		score = 0;
-		questionsResponse.stream()
+		questionsOfAnswerBook.stream()
 			.forEach(response -> { selectQuestionToProcessScore(response); });
 	}
 
-	private void selectQuestionToProcessScore(final QuestionResponse response) {
+	private void selectQuestionToProcessScore(final QuestionOfAnswerBook response) {
 		response.getTargetQuestion()
 		.getAlternatives().stream()
 			.forEach(alternative -> {					
@@ -83,7 +83,7 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	}
 
 	@Override
-	public void addScore(final QuestionResponse response, final AlternativeImpl alternative) {
+	public void addScore(final QuestionOfAnswerBook response, final AlternativeImpl alternative) {
 		
 		final Alternative selectedAlternative = response.getSelectedAlternatives()
 				.stream().findFirst().orElse(null);
@@ -103,13 +103,13 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	}
 
 	@Override
-	public User getUser() {
-		return user;
+	public Student getOwner() {
+		return owner;
 	}
 
 	@Override
-	public void setUser(User user) {
-		this.user = user;
+	public void setOwner(Student owner) {
+		this.owner = owner;
 	}
 
 	@Override
@@ -123,13 +123,13 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 	}
 
 	@Override
-	public Collection<QuestionResponseImpl> getQuestionsResponse() {
-		return questionsResponse;
+	public Collection<QuestionOfAnswerBookImpl> getQuestionsOfAnswerBook() {
+		return questionsOfAnswerBook;
 	}
 
 	@Override
-	public void setQuestionsResponse(Collection<QuestionResponseImpl> questionsResponse) {
-		this.questionsResponse = questionsResponse;
+	public void setQuestionOfAnswerBook(Collection<QuestionOfAnswerBookImpl> questionsResponse) {
+		this.questionsOfAnswerBook = questionsResponse;
 	}
 	
 	@Override
@@ -139,11 +139,11 @@ public class ChallengeResponseImpl extends ModelImpl implements ChallengeRespons
 			return true;
 		}
 		
-		if(!(objectToBeComparated instanceof ChallengeResponseImpl)) {
+		if(!(objectToBeComparated instanceof AnswerBookImpl)) {
 			return false;
 		}
 		
-		final ChallengeResponseImpl objectComparatedInstance = (ChallengeResponseImpl) objectToBeComparated;
+		final AnswerBookImpl objectComparatedInstance = (AnswerBookImpl) objectToBeComparated;
 		
 		return Objects.equals(this.id, objectComparatedInstance.id) && 
 				Objects.equals(this.score, objectComparatedInstance.score);

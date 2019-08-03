@@ -86,10 +86,10 @@
 	<privilege name='DELETE_CHALLENGE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<privilege name='READ_CHALLENGE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
-	<privilege name='CREATE_CHALLENGE_RESPONSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<privilege name='UPDATE_CHALLENGE_RESPONSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<privilege name='DELETE_CHALLENGE_RESPONSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<privilege name='READ_CHALLENGE_RESPONSE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='CREATE_ANSWER_BOOK' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='UPDATE_ANSWER_BOOK' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='DELETE_ANSWER_BOOK' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<privilege name='READ_ANSWER_BOOK' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
 	<privilege name='READ_DISCIPLINE' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
