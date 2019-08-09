@@ -46,9 +46,9 @@ public class QuestionOfAnswerBookImpl extends ModelImpl implements QuestionOfAns
 	private Question targetQuestion;
 	
 	@ManyToMany(fetch = LAZY)
-	@JoinTable(name="QUESTION_OF_ANSWER_BOOK_has_alternatives",
-	    joinColumns = {@JoinColumn(name="questionResponseFK", referencedColumnName = "id")},
-	    foreignKey = @ForeignKey(name = "QUESTION_OF_ANSWER_BOOK_HAS_ALTERNATIVES_questionResponseFK"),
+	@JoinTable(name="question_of_answer_book_has_alternatives",
+	    joinColumns = {@JoinColumn(name="questionOfAnswerBookFK", referencedColumnName = "id")},
+	    foreignKey = @ForeignKey(name = "QUESTION_OF_ANSWER_BOOK_HAS_ALTERNATIVES_answerQuestionFK"),
 	    inverseJoinColumns = {@JoinColumn(name="selectedAlternativeFK", referencedColumnName = "id")},
 	    inverseForeignKey = @ForeignKey(name = "QUESTION_OF_ANSWER_BOOK_HAS_ALTERNATIVES_selectedAlternativeFK"))
 	private Collection<AlternativeImpl> selectedAlternatives;

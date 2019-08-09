@@ -175,8 +175,6 @@
 	<challenge title='Challenge 2' disciplineFK='1' professorFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<challenge title='Challenge 3' disciplineFK='2' professorFK='1' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<challenge title='Challenge 4' disciplineFK='2' professorFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 5' disciplineFK='2' professorFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<challenge title='Challenge 6' disciplineFK='1' professorFK='3' enabled='true' challengeType='NORMAL' challengeStatus='RELEASED' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 
 	<question description='Question about Internet Protocols' score='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<question description='Question about Math' score='50' challengeFK='1' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
@@ -208,6 +206,42 @@
 	<alternative isTrue='false' description="Response 2" letter='B' questionFK='4' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<alternative isTrue='false' description="Response 3" letter='C' questionFK='4' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<alternative isTrue='false' description="Response 4" letter='D' questionFK='4' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-
+	
+	<alternative isTrue='true' description="Response 1" letter='A' questionFK='5' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 2" letter='B' questionFK='5' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 3" letter='C' questionFK='5' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 4" letter='D' questionFK='5' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<alternative isTrue='true' description="Response 1" letter='A' questionFK='6' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 2" letter='B' questionFK='6' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 3" letter='C' questionFK='6' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 4" letter='D' questionFK='6' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<alternative isTrue='true' description="Response 1" letter='A' questionFK='7' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 2" letter='B' questionFK='7' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 3" letter='C' questionFK='7' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<alternative isTrue='false' description="Response 4" letter='D' questionFK='7' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<answer_book challengeFK='1' userFK='2' score='100' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<answer_book challengeFK='2' userFK='2' score='100' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<answer_book challengeFK='3' userFK='4' score='100' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<answer_book challengeFK='4' userFK='4' score='50' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' /> 
+	
+	<question_of_answer_book answerBookFK='1' targetQuestionFK='1' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question_of_answer_book answerBookFK='1' targetQuestionFK='2' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question_of_answer_book answerBookFK='2' targetQuestionFK='3' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question_of_answer_book answerBookFK='2' targetQuestionFK='4' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question_of_answer_book answerBookFK='3' targetQuestionFK='5' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question_of_answer_book answerBookFK='3' targetQuestionFK='6' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<question_of_answer_book answerBookFK='4' targetQuestionFK='7' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<question_of_answer_book_has_alternatives questionOfAnswerBookFK='1' selectedAlternativeFK='1' />
+	<question_of_answer_book_has_alternatives questionOfAnswerBookFK='2' selectedAlternativeFK='1' />
+	<question_of_answer_book_has_alternatives questionOfAnswerBookFK='3' selectedAlternativeFK='1' />
+	<question_of_answer_book_has_alternatives questionOfAnswerBookFK='4' selectedAlternativeFK='1' />
+	<question_of_answer_book_has_alternatives questionOfAnswerBookFK='5' selectedAlternativeFK='1' />
+	<question_of_answer_book_has_alternatives questionOfAnswerBookFK='6' selectedAlternativeFK='1' />
+	<question_of_answer_book_has_alternatives questionOfAnswerBookFK='7' selectedAlternativeFK='1' />
+	
 </dataset>
 
