@@ -27,10 +27,8 @@ public class InstituteIntegrationTest extends IntegrationTestConfiguration {
 	@Test
 	public void test_001_givenToken_whenGetInstitutes_thenStatus200()
 	  throws Exception {
-	 
-		final String accessToken = obtainAccessToken("test", "secret");
 		
-	    mvc.perform(get("/institutes").header("Authorization", "Bearer " + accessToken)
+	    mvc.perform(get("/institutes").header("Authorization", "Bearer " + super.oauthAccessToken)
 	      .contentType(MediaType.APPLICATION_JSON))
 	      .andExpect(status().isOk())
 	      .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -40,8 +38,6 @@ public class InstituteIntegrationTest extends IntegrationTestConfiguration {
 	@Test
 	public void test_002_givenInstituteAndToken_whenCreateInstitute_thenReturnInstitute()
 	  throws Exception {
-	 
-		final String accessToken = obtainAccessToken("test", "secret");
 		
 		final InstituteImpl institute = new InstituteImpl();
 		institute.setCity("RECIFE");
@@ -53,7 +49,7 @@ public class InstituteIntegrationTest extends IntegrationTestConfiguration {
 		final String instituteToJson = mapper.writeValueAsString(institute);
 		
 		
-	    mvc.perform(post("/institutes/create").header("Authorization", "Bearer " + accessToken)
+	    mvc.perform(post("/institutes/create").header("Authorization", "Bearer " + super.oauthAccessToken)
 	      .contentType(MediaType.APPLICATION_JSON).content(instituteToJson))
 	      .andExpect(status().isOk())
 	      .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

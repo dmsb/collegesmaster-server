@@ -46,6 +46,7 @@ public class PersistenceJpaConfiguration {
 	    final DataSourceInitializer initializer = new DataSourceInitializer();
 	    initializer.setDataSource(dataSource);
 	    initializer.setDatabasePopulator(databasePopulator());
+
 	    return initializer;
 	}
 	
@@ -83,7 +84,7 @@ public class PersistenceJpaConfiguration {
 		dataSource.setPassword(env.getProperty("javax.persistence.jdbc.password"));
 		return dataSource;
 	}
-
+	
 	private final Properties persistenceProperties() {
 		final Properties persistenceProperties = new Properties();
 		persistenceProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));

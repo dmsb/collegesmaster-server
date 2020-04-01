@@ -7,7 +7,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.codehaus.jackson.map.ObjectMapper;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +28,14 @@ import br.com.collegesmaster.security.model.entity.impl.RoleImpl;
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RoleIntegrationTest extends IntegrationTestConfiguration {
-
+	
+	@Before
+	public void before() throws Exception {
+		Set<String> privileges = new HashSet<>();
+		privileges.add("READ_ROLE");
+		super.oauthAccessToken = this.obtainAccessToken("ADMINISTRATOR", privileges);
+	}
+	
 	@Test
 	public void test_001_givenToken_whenGetRoles_thenStatus200()
 	  throws Exception {

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -25,6 +26,9 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 
 	@Autowired
 	private DataSource dataSource;
+	
+	 @Autowired
+	 private PasswordEncoder encoder;
 
 	@Autowired
 	@Qualifier("authenticationManagerBean")
@@ -37,9 +41,10 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
+		
 		clients.jdbc(dataSource).withClient("angular-client")
-				.secret("$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6") // secret
+				.secret(encoder.encode("secret")) // secret
+				//.secret("$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6") // secret
 				.authorizedGrantTypes("password", "authorization_code", "refresh_token")
 				.accessTokenValiditySeconds(300).scopes("read", "write") //5mins
 				.refreshTokenValiditySeconds(72000).scopes("read", "write"); //20hrs

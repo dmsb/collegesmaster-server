@@ -216,9 +216,6 @@ public class UserImpl extends ModelImpl implements User {
 				authorities.add(new SimpleGrantedAuthority(currentPrivilege.getName()));
 			}
 		}
-//        for (final String role : this.getRoleNames()) {
-//            authorities.add(new SimpleGrantedAuthority(role));
-//        }
         return authorities;
 	}
 

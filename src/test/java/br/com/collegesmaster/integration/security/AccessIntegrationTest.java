@@ -41,11 +41,9 @@ public class AccessIntegrationTest extends IntegrationTestConfiguration {
 	
 	@Test
 	public void test_002_givenRevokeToken_whenPassToken_thenStatus200() throws Exception {
-		
-		final String accessToken = obtainAccessToken("test", "secret");
 
 		mvc.perform(delete("/oauth/token")
-			.header("TOKEN-ID", accessToken)
+			.header("TOKEN-ID", super.oauthAccessToken)
 			.with(httpBasic("angular-client", "secret")))
 			.andExpect(status().isOk());
 	}

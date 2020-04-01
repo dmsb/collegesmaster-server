@@ -17,18 +17,18 @@ import org.dbunit.operation.DatabaseOperation;
 public class DBUnitUtil {
 	
 	public static void main(String[] args) {
-		inserirDados();
+		inserirDados("collegesmastertest");
 	}
 	
 	private static final String XML_FILE = "/dbunit/dataset.xml";
 	
-	public static void inserirDados() {
+	public static void inserirDados(String dataBaseName) {
         Connection conn = null;
         IDatabaseConnection db_conn = null;
         try {
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/collegesmaster?useSSL=false&useTimezone=true&serverTimezone=UTC", "root", "root");
-            db_conn = new DatabaseConnection(conn, "collegesmaster");
+                    "jdbc:mysql://localhost:3306/" + dataBaseName + "?useSSL=false&useTimezone=true&serverTimezone=UTC", "root", "root");
+            db_conn = new DatabaseConnection(conn, dataBaseName);
             final DatabaseConfig dbConfig = db_conn.getConfig();
             dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory());
             dbConfig.setProperty(DatabaseConfig.PROPERTY_METADATA_HANDLER, new MySqlMetadataHandler());
@@ -37,6 +37,7 @@ public class DBUnitUtil {
             final URL url = DBUnitUtil.class.getResource(XML_FILE);
             final IDataSet dataSet = builder.build(url);
             DatabaseOperation.CLEAN_INSERT.execute(db_conn, dataSet);
+            
         } catch (Exception ex) {
             throw new RuntimeException(ex.getMessage(), ex);
         } finally {

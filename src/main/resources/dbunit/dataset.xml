@@ -1,43 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <dataset>
-
-	<institute name='Instituto Federal de Pernambuco' country='Brasil' state='PE' city='Recife'
-	version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<institute name='Instituto Federal da Bahia' country='Brasil' state='BA' city='Salvador'
-	version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-
-	<course instituteFK='1' name='Análise e Desenvolvimento de Sistemas' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<course instituteFK='1' name='Engenharia Ambiental' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<course instituteFK='1' name='Eletronica' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-
-	<course instituteFK='2' name='Análise e Desenvolvimento de Sistemas' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<course instituteFK='2' name='Engenharia Química' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<course instituteFK='2' name='Engenharia Eletrica' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-
-	<discipline courseFK='1' name='Software Corporativo I' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='1' name='Redes' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='1' name='Introdução à Programação' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-
-	<discipline courseFK='2' name='Fisca i' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='2' name='Fisca ii' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='2' name='Fisca iii' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-
-	<discipline courseFK='3' name='Testes' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='3' name='Quimica I' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='3' name='Fisica IV' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	
-	<discipline courseFK='4' name='Software Corporativo I' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='4' name='Redes' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='4' name='Introdução à Programação' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	
-	<discipline courseFK='5' name='Fisca i' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='5' name='Fisca ii' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='5' name='Fisca iii' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	
-	<discipline courseFK='6' name='Fisca II' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='6' name='Quimica I' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-	<discipline courseFK='6' name='Fisica IV' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
-
 	<!-- password = secret -->
 	<user username='diogo.brito'
 		password='$2a$04$CYFi1SAuhrbu23CZbcfoZ.idF4XNOaNOaMusKybIbrPxplDfDiSZ6'
@@ -66,15 +29,6 @@
 	<professor id='3' />
 
 	<student id='4' level='1' levelDesignation='APREDIZ_DE_MAGIA' courseFK='2' />
-	
-	<discipline_has_professors professorFK='1' disciplineFK='1' />
-	<discipline_has_professors professorFK='1' disciplineFK='2' />
-	<discipline_has_professors professorFK='3' disciplineFK='3' />
-	
-	<discipline_has_students studentFK='2' disciplineFK='1' />
-	<discipline_has_students studentFK='2' disciplineFK='2' />
-	<discipline_has_students studentFK='4' disciplineFK='3' />
-	<discipline_has_students studentFK='4' disciplineFK='4' />
 	
 	<role name='PROFESSOR' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
 	<role name='STUDENT' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
@@ -154,6 +108,52 @@
 	<user_has_roles userFK='2' roleFK='2' />
 	<user_has_roles userFK='3' roleFK='3' />
 	<user_has_roles userFK='4' roleFK='2' />
+	
+	<institute name='Instituto Federal de Pernambuco' country='Brasil' state='PE' city='Recife'
+	version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<institute name='Instituto Federal da Bahia' country='Brasil' state='BA' city='Salvador'
+	version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+
+	<course instituteFK='1' name='Análise e Desenvolvimento de Sistemas' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<course instituteFK='1' name='Engenharia Ambiental' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<course instituteFK='1' name='Eletronica' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+
+	<course instituteFK='2' name='Análise e Desenvolvimento de Sistemas' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<course instituteFK='2' name='Engenharia Química' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<course instituteFK='2' name='Engenharia Eletrica' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+
+	<discipline courseFK='1' name='Software Corporativo I' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='1' name='Redes' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='1' name='Introdução à Programação' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+
+	<discipline courseFK='2' name='Fisca i' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='2' name='Fisca ii' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='2' name='Fisca iii' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+
+	<discipline courseFK='3' name='Testes' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='3' name='Quimica I' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='3' name='Fisica IV' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<discipline courseFK='4' name='Software Corporativo I' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='4' name='Redes' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='4' name='Introdução à Programação' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<discipline courseFK='5' name='Fisca i' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='5' name='Fisca ii' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='5' name='Fisca iii' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<discipline courseFK='6' name='Fisca II' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='6' name='Quimica I' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	<discipline courseFK='6' name='Fisica IV' version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' />
+	
+	<discipline_has_professors professorFK='1' disciplineFK='1' />
+	<discipline_has_professors professorFK='1' disciplineFK='2' />
+	<discipline_has_professors professorFK='3' disciplineFK='3' />
+	
+	<discipline_has_students studentFK='2' disciplineFK='1' />
+	<discipline_has_students studentFK='2' disciplineFK='2' />
+	<discipline_has_students studentFK='4' disciplineFK='3' />
+	<discipline_has_students studentFK='4' disciplineFK='4' />
 
 	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='1' userFK='1' />
 	<ranking version='0' creationDate='2018-01-01 00:00:00' lastModificationDate='2018-01-01 00:00:00' score='0' disciplineFK='2' userFK='1' />
